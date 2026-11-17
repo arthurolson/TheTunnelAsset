@@ -1,7 +1,7 @@
 # Files too large for GitHub (over 95 MB) that are hosted elsewhere (a Release asset, object storage) go in an
-# external/ folder inside their kind's folder: the file stays local (for its stats and checksum), its sidecar is
-# committed with the file's url.
-*/external/*
-!*/external/*.meta.json
+# external/ folder anywhere under their kind's folder: the file stays local (for its stats and checksum), its
+# sidecar is committed with the file's url.
+**/external/*
+!**/external/*.meta.json
 .DS_Store
 __pycache__/

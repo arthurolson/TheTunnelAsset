@@ -16,13 +16,18 @@ splat/      .ply 3D Gaussian splats                             OpenCV (y down)
 image/      .jpg / .png: posters, textures, 360 panoramas (tag "equirect")
 video/      .mp4, H.264 + AAC, up to 4K, faststart; 360 video tagged "equirect" (+ "stereo-tb" for top-bottom 3D)
 molecule/   .pdb / .cif atomic models, and .glb surfaces made from them   glTF y-up, Angstroms
+  assemblies/  ligands/  proteins/      The Tunnel's molecule categories (add more: chemicals/, nucleic-acids/)
 virus/      .glb whole-virus or capsid meshes, and .json instance lists   glTF y-up, Angstroms
+  capsids/                              The Tunnel's viral capsids (capsids/external/: hosted as Release assets)
 thumbs/     one .jpg per asset (about 480 x 360)
 tools/      build_manifest.py writes assets.json; the scripts that made the assets
 assets.json the index of every asset, for apps (generated: don't edit it by hand)
 ```
 
 Next to every asset file is a small metadata sidecar named after it, for example `mesh/foo.glb.meta.json`.
+- Kind folders can have subfolders; an asset's kind comes from its top folder.
+- The molecules and capsids are the ones The Tunnel ships (Mol* glTF exports). Their `category` field names the TS Menu
+  category they're in.
 
 ## Adding an asset, end to end
 
@@ -91,6 +96,15 @@ Next to every asset file is a small metadata sidecar named after it, for example
   ```
   `virus/crambin_icosahedral_demo.json` is an example: 60 copies of crambin with icosahedral symmetry.
 
+**Thumbnails** for meshes, molecules and viruses can be drawn from the glb itself:
+```bash
+python3 tools/glb_thumbnail.py molecule/proteins/foo.glb thumbs/foo.jpg
+```
+To turn an OBJ with MTL colours (as some molecular-surface tools write) into a glb:
+```bash
+python3 tools/obj_mtl_to_glb.py surface.obj virus/capsids/foo.glb
+```
+
 ### Large files
 
 - GitHub refuses files over 100 MB, so the generator stops at 95 MB.
@@ -107,6 +121,7 @@ Next to every asset file is a small metadata sidecar named after it, for example
      gh release create media-1 video/external/tour.mp4
      ```
      Its url is `https://github.com/<owner>/TheTunnelAsset/releases/download/media-1/tour.mp4`.
+     `virus/capsids/external/sars_cov_2_virion.glb` (324 MB) is hosted this way, in release `molecules-1`.
 
 ## The generator: tools/build_manifest.py
 

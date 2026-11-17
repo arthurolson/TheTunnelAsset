@@ -1,0 +1,18 @@
+{
+  "id": "igg_1igt",
+  "subject": "molecules",
+  "title": "Antibody IgG (PDB 1IGT)",
+  "tags": [
+    "protein",
+    "antibody",
+    "igg"
+  ],
+  "pdb_id": "1IGT",
+  "category": "proteins",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "molecular surface, coloured by chain"
+  },
+  "source": "https://www.rcsb.org/structure/1IGT",
+  "thumbnail": "thumbs/1igt_igg.jpg"
+}

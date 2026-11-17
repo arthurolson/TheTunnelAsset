@@ -1,0 +1,19 @@
+{
+  "id": "tbsv_capsid_2tbv",
+  "subject": "viruses",
+  "title": "Tomato bushy stunt virus capsid (PDB 2TBV)",
+  "tags": [
+    "virus",
+    "capsid",
+    "icosahedral",
+    "plant"
+  ],
+  "pdb_id": "2TBV",
+  "category": "viral capsids",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "molecular surface, coloured by chain"
+  },
+  "source": "https://www.rcsb.org/structure/2TBV",
+  "thumbnail": "thumbs/2tbv_tbsv.jpg"
+}

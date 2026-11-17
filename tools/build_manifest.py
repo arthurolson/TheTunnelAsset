@@ -111,7 +111,7 @@ def sha256(path: Path) -> str:
 
 
 def glb_stats(path: Path) -> dict:
-    """Vertices, triangles and where the colour is, from the glb's JSON chunk (no extra libraries)."""
+    """Vertices and triangles as drawn (every placed copy of a mesh), and where the colour is, from the glb's JSON."""
     with path.open("rb") as f:
         magic, _, _ = struct.unpack("<4sII", f.read(12))
         length, kind = struct.unpack("<I4s", f.read(8))
@@ -119,15 +119,20 @@ def glb_stats(path: Path) -> dict:
             raise Problem(f"{path}: not a glTF binary")
         gltf = json.loads(f.read(length))
     accessors = gltf.get("accessors", [])
+    # Count each mesh as often as nodes place it (molecular exports place one capsid protein 60 or 180 times).
+    uses = [0] * len(gltf.get("meshes", []))
+    for node in gltf.get("nodes", []):
+        if "mesh" in node:
+            uses[node["mesh"]] += 1
     vertices = faces = 0
     vertex_colors = textured = False
-    for mesh in gltf.get("meshes", []):
+    for mesh, used in zip(gltf.get("meshes", []), uses):
         for primitive in mesh.get("primitives", []):
             attributes = primitive.get("attributes", {})
             count = accessors[attributes["POSITION"]]["count"] if "POSITION" in attributes else 0
-            vertices += count
+            vertices += count * used
             if primitive.get("mode", 4) == 4:
-                faces += (accessors[primitive["indices"]]["count"] if "indices" in primitive else count) // 3
+                faces += (accessors[primitive["indices"]]["count"] if "indices" in primitive else count) // 3 * used
             vertex_colors |= "COLOR_0" in attributes
     for material in gltf.get("materials", []):
         textured |= "baseColorTexture" in material.get("pbrMetallicRoughness", {})

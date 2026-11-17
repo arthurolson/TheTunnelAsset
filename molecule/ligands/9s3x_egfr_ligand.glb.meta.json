@@ -1,0 +1,18 @@
+{
+  "id": "egfr_ligand_9s3x",
+  "subject": "molecules",
+  "title": "EGFR ligand (from PDB 9S3X)",
+  "tags": [
+    "ligand",
+    "egfr",
+    "small-molecule"
+  ],
+  "pdb_id": "9S3X",
+  "category": "ligands",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "molecular surface, coloured by chain"
+  },
+  "source": "https://www.rcsb.org/structure/9S3X",
+  "thumbnail": "thumbs/9s3x_egfr_ligand.jpg"
+}

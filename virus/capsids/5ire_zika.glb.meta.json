@@ -1,0 +1,19 @@
+{
+  "id": "zika_capsid_5ire",
+  "subject": "viruses",
+  "title": "Zika virus (PDB 5IRE)",
+  "tags": [
+    "virus",
+    "capsid",
+    "icosahedral",
+    "zika"
+  ],
+  "pdb_id": "5IRE",
+  "category": "viral capsids",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "molecular surface, coloured by chain"
+  },
+  "source": "https://www.rcsb.org/structure/5IRE",
+  "thumbnail": "thumbs/5ire_zika.jpg"
+}

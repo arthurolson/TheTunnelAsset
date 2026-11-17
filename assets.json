@@ -4,7 +4,7 @@
   "branch": "main",
   "base_url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/",
   "updated": "2026-11-17",
-  "count": 20,
+  "count": 29,
   "kinds": [
     "image",
     "mesh",
@@ -18,7 +18,8 @@
     "david-goodsell",
     "molecules",
     "scripps-1924",
-    "test"
+    "test",
+    "viruses"
   ],
   "assets": [
     {
@@ -696,6 +697,344 @@
         "notes": "one sphere per atom, CPK colours, shading baked into vertex colours"
       },
       "pdb_id": "1CRN"
+    },
+    {
+      "id": "ecoli_50s_ribosome",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "E. coli 50S ribosome (PDB 10QM), coarse surface",
+      "tags": [
+        "assembly",
+        "ribosome",
+        "rna",
+        "protein"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/assemblies/10qm_50s_ribosome.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/assemblies/10qm_50s_ribosome.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/assemblies/10qm_50s_ribosome.glb",
+      "bytes": 524804,
+      "sha256": "6102e149a64de49088772bf2dadd89769ac834ade6a1954558a0204312c2bce2",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/10qm_50s_ribosome.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 9544,
+      "faces": 19012,
+      "color": "vertex",
+      "pdb_id": "10QM",
+      "category": "assemblies",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      },
+      "source": "https://www.rcsb.org/structure/10QM"
+    },
+    {
+      "id": "ecoli_50s_ribosome_hires",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "E. coli 50S ribosome (PDB 10QM), high-resolution surface",
+      "tags": [
+        "assembly",
+        "ribosome",
+        "rna",
+        "protein",
+        "hi-res"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/assemblies/10qm_50s_ribosome_hires.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/assemblies/10qm_50s_ribosome_hires.glb",
+      "cdn_url": null,
+      "bytes": 29323068,
+      "sha256": "e454352083f17034734413c35b3308afbbeb007ad223b1be879adfb8fb125968",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/10qm_50s_ribosome_hires.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 563268,
+      "faces": 1126760,
+      "color": "vertex",
+      "pdb_id": "10QM",
+      "category": "assemblies",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "Gaussian surface, every chain in its own colour"
+      },
+      "source": "https://www.rcsb.org/structure/10QM"
+    },
+    {
+      "id": "egfr_ligand_9s3x",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "EGFR ligand (from PDB 9S3X)",
+      "tags": [
+        "ligand",
+        "egfr",
+        "small-molecule"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/ligands/9s3x_egfr_ligand.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/ligands/9s3x_egfr_ligand.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/ligands/9s3x_egfr_ligand.glb",
+      "bytes": 1302364,
+      "sha256": "cf7af16d4bc9598b3aa181b2f04b506f4e53abd1546d976774d15a7e64374303",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/9s3x_egfr_ligand.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 25038,
+      "faces": 49920,
+      "color": "vertex",
+      "pdb_id": "9S3X",
+      "category": "ligands",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      },
+      "source": "https://www.rcsb.org/structure/9S3X"
+    },
+    {
+      "id": "igg_1igt",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "Antibody IgG (PDB 1IGT)",
+      "tags": [
+        "protein",
+        "antibody",
+        "igg"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/proteins/1igt_igg.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/proteins/1igt_igg.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/proteins/1igt_igg.glb",
+      "bytes": 498280,
+      "sha256": "36d1eec3e093a6fb6ba1c8cae8c16aa9660a5f1ab8ddd4d6085fbb5f12116ee1",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/1igt_igg.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 9506,
+      "faces": 18996,
+      "color": "vertex",
+      "pdb_id": "1IGT",
+      "category": "proteins",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      },
+      "source": "https://www.rcsb.org/structure/1IGT"
+    },
+    {
+      "id": "egfr",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "EGFR, epidermal growth factor receptor",
+      "tags": [
+        "protein",
+        "receptor",
+        "egfr"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/proteins/egfr.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/proteins/egfr.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/proteins/egfr.glb",
+      "bytes": 5207816,
+      "sha256": "556be230395ec54395439359ae6f673357229398639078e36d724a71a92c9109",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/egfr.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 185952,
+      "faces": 61984,
+      "color": "vertex",
+      "category": "proteins",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      }
+    },
+    {
+      "id": "poliovirus_capsid_2plv",
+      "kind": "virus",
+      "subject": "viruses",
+      "title": "Poliovirus capsid (PDB 2PLV), coarse surface",
+      "tags": [
+        "virus",
+        "capsid",
+        "icosahedral",
+        "polio"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "virus/capsids/2plv_poliovirus.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/virus/capsids/2plv_poliovirus.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/virus/capsids/2plv_poliovirus.glb",
+      "bytes": 1669616,
+      "sha256": "182fceb4c1ae67b592432b9cbe0486bee3ef06699bfcafd7ee74bb264831aee0",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/2plv_poliovirus.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "scaled to 0.4 units across (the capsid is about 30 nm across)",
+        "meters_per_unit": 7.5e-08
+      },
+      "vertices": 39429,
+      "faces": 60000,
+      "color": "material",
+      "pdb_id": "2PLV",
+      "category": "viral capsids",
+      "method": {
+        "name": "Gaussian surface (spacing 2 A, sigma 3 A, iso 0.5) by gauss_surface.py, then tools/obj_mtl_to_glb.py",
+        "notes": "coloured by protein: VP1 blue, VP2 green, VP3 red, VP4 yellow"
+      },
+      "source": "https://www.rcsb.org/structure/2PLV"
+    },
+    {
+      "id": "tbsv_capsid_2tbv",
+      "kind": "virus",
+      "subject": "viruses",
+      "title": "Tomato bushy stunt virus capsid (PDB 2TBV)",
+      "tags": [
+        "virus",
+        "capsid",
+        "icosahedral",
+        "plant"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "virus/capsids/2tbv_tbsv.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/virus/capsids/2tbv_tbsv.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/virus/capsids/2tbv_tbsv.glb",
+      "bytes": 77104,
+      "sha256": "cdddd2873affa79222de50f90ca179742a860264abfd78190c009e3d0c1a4224",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/2tbv_tbsv.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 55680,
+      "faces": 110640,
+      "color": "vertex",
+      "pdb_id": "2TBV",
+      "category": "viral capsids",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      },
+      "source": "https://www.rcsb.org/structure/2TBV"
+    },
+    {
+      "id": "zika_capsid_5ire",
+      "kind": "virus",
+      "subject": "viruses",
+      "title": "Zika virus (PDB 5IRE)",
+      "tags": [
+        "virus",
+        "capsid",
+        "icosahedral",
+        "zika"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "virus/capsids/5ire_zika.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/virus/capsids/5ire_zika.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/virus/capsids/5ire_zika.glb",
+      "bytes": 158048,
+      "sha256": "cd7644409f6b69dc1a5180d7c352aad37de31fe48db43a3211a1ccdde22e147d",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/5ire_zika.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 62760,
+      "faces": 124080,
+      "color": "vertex",
+      "pdb_id": "5IRE",
+      "category": "viral capsids",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "molecular surface, coloured by chain"
+      },
+      "source": "https://www.rcsb.org/structure/5IRE"
+    },
+    {
+      "id": "sars_cov_2_virion",
+      "kind": "virus",
+      "subject": "viruses",
+      "title": "SARS-CoV-2 virion (whole virus, 12M triangles)",
+      "tags": [
+        "virus",
+        "virion",
+        "coronavirus",
+        "sars-cov-2",
+        "heavy"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "virus/capsids/external/sars_cov_2_virion.glb",
+      "url": "https://github.com/arthurolson/TheTunnelAsset/releases/download/molecules-1/sars_cov_2_virion.glb",
+      "cdn_url": null,
+      "bytes": 324147752,
+      "sha256": "92053926c22a6e2341af9ad39092788dff5ceb7bc1dd945145f5223689a51a03",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/sars_cov_2_virion.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 6326760,
+      "faces": 12249600,
+      "color": "vertex",
+      "category": "viral capsids",
+      "method": {
+        "name": "Mol* (molstar.org) glTF export",
+        "notes": "whole virion: membrane, spike, M and E proteins"
+      },
+      "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest."
     },
     {
       "id": "crambin_icosahedral_demo",

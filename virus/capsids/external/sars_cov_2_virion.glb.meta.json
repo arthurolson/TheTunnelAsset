@@ -1,0 +1,20 @@
+{
+  "id": "sars_cov_2_virion",
+  "subject": "viruses",
+  "title": "SARS-CoV-2 virion (whole virus, 12M triangles)",
+  "tags": [
+    "virus",
+    "virion",
+    "coronavirus",
+    "sars-cov-2",
+    "heavy"
+  ],
+  "category": "viral capsids",
+  "url": "https://github.com/arthurolson/TheTunnelAsset/releases/download/molecules-1/sars_cov_2_virion.glb",
+  "thumbnail": "thumbs/sars_cov_2_virion.jpg",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "whole virion: membrane, spike, M and E proteins"
+  },
+  "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest."
+}
