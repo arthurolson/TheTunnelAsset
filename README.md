@@ -8,7 +8,7 @@ splat/        3D Gaussian Splatting .ply files (SHARP, one photo each)
 mesh/         textured / vertex-colored meshes (.glb, .usdz)
 thumbs/       small JPG thumbnails, one per asset
 assets.json   machine-readable index of every asset (query this from apps)
-tools/        build_manifest.py: regenerates assets.json
+tools/        build_manifest.py (regenerates assets.json) + the scripts that made the assets
 ```
 
 ## Assets
@@ -119,6 +119,52 @@ Things to know about `raw.githubusercontent.com`:
   [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). You must credit the author when you reuse it.
   Assets with a license have a `license` field in `assets.json`.
 - Splats were made with [SHARP](https://github.com/apple/ml-sharp). See its license for model terms.
+
+## Making new assets (the exact scripts used for the assets above)
+
+Use these scripts as they are. They hold the settings that produced the current assets.
+Python scripts need `numpy plyfile trimesh` (+ `scipy pillow` for frames); the
+[ml-sharp](https://github.com/apple/ml-sharp) conda env has most of them.
+
+**Photo -> splat -> mesh**
+
+```bash
+# 1. splat (Apple SHARP, runs on mps / cuda / cpu; checkpoint downloads on first run)
+sharp predict -i photos/ -o out/ --device mps            # -> out/<name>.ply (OpenCV coords)
+# 2. 2.5D relief mesh from the front layer, vertex colors, y-up   -> out/<id>_mesh.ply + .glb
+python tools/splat_to_mesh.py out/<name>.ply out/<id>_mesh
+# 3. splat-look mesh: one quad per Gaussian (optionally decimated for Quest)
+python tools/splat2glb.py out/<name>.ply mesh/<id>_splatlook.glb 1.6
+python tools/splat2glb.py out/<name>.ply mesh/<id>_splatlook_quest.glb 1.6 100000 "credit"
+```
+
+| script | what it does |
+|---|---|
+| `splat_to_mesh.py` | triangulates layer 0 of the 2x768x768 SHARP grid; drops triangles across depth jumps (z ratio >= 1.04) or with opacity <= 0.1; flips to y-up |
+| `splat2glb.py` | args: `in.ply out.glb [sigma] [target_splats] [copyright]`; quads span +-sigma along the 2 largest Gaussian axes; drops opacity < 0.2; unlit linear vertex colors |
+| `clean_splat_sky.py` | **example only**: the sky/floater cleanup used for Scripps 1924 (needs a sky mask; thresholds tuned for that photo) |
+
+**Orbit video -> full 360 degree model** (macOS on Apple silicon, Apple Object Capture)
+
+```bash
+python tools/select_frames.py in.mov work/frames 10 0.2      # 10 fps, drop blurriest 20%
+swift tools/object_capture.swift work/frames work/model.usdz medium   # preview|reduced|medium|full|raw
+swift tools/usdz_to_obj.swift work/model.usdz work/obj/model.obj      # ModelIO, with textures
+python tools/obj_to_glb.py work/obj/model.obj mesh/<id>_fullbody.glb 1.80   # real height in m, feet at y=0
+cp work/model.usdz mesh/<id>_fullbody.usdz
+```
+
+`object_capture.swift` uses sequential sample ordering (video frames), high feature sensitivity
+and object masking (keeps the subject, drops the room). On Windows or Linux, run the same frames
+through RealityScan, Meshroom or COLMAP instead.
+
+Capture tips. Most bad results come from the subject moving.
+- The subject stands perfectly still in an A-pose (arms 30-45 degrees out).
+- Film two slow loops of 20-40 s: one at chest height, one higher, looking down.
+- Use even light with no backlight. Keep the whole body in frame the whole time.
+- Shiny, black and very thin parts (glasses, loose hair) reconstruct poorly.
+- For rigging: clean up in Blender, decimate to about 50k tris, auto-rig in Mixamo or AccuRIG,
+  then use Unity Humanoid.
 
 ## Adding an asset
 
