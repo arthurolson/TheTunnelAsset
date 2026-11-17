@@ -1,0 +1,407 @@
+{
+  "schema": "thetunnel-assets/1",
+  "repo": "https://github.com/autinlab/TheTunnelAsset",
+  "base_url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/",
+  "updated": "2026-11-17",
+  "count": 11,
+  "subjects": [
+    "art",
+    "david-goodsell",
+    "scripps"
+  ],
+  "assets": [
+    {
+      "id": "goodsell_portrait_splat",
+      "kind": "splat",
+      "subject": "david-goodsell",
+      "title": "David Goodsell painting at his desk",
+      "tags": [
+        "portrait",
+        "artist",
+        "studio",
+        "watercolor"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/goodsell_portrait.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/goodsell_portrait.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "b8d906025fc2d986d2ba87fc3a9867294e141ada8381c9900c5204be49f33aa3",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "source": "photo",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source_image_size": [
+        4908,
+        3614
+      ]
+    },
+    {
+      "id": "scripps_virus_panel_splat",
+      "kind": "splat",
+      "subject": "scripps",
+      "title": "Scripps lab: framed virus capsid artwork",
+      "tags": [
+        "scripps",
+        "virus",
+        "artwork",
+        "lab"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/scripps_virus_panel_IMG_7748.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_panel_IMG_7748.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "a90dc6ee5c3079c0d7d2ac7c2441e38dc0449e1a909666d9f4c09d5ade42abb3",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_panel_IMG_7748.jpg",
+      "source": "photo (IMG_7748)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source_image_size": [
+        3024,
+        4032
+      ]
+    },
+    {
+      "id": "scripps_virus_models_7756_splat",
+      "kind": "splat",
+      "subject": "scripps",
+      "title": "Scripps lab: 3D-printed virus capsid models (1)",
+      "tags": [
+        "scripps",
+        "virus",
+        "3d-print",
+        "models"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/scripps_virus_models_IMG_7756.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_models_IMG_7756.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "4a83e3a1067dee54401ee5d3a6926f0dd0960e11d7822c79dbca264ae3f62918",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_models_IMG_7756.jpg",
+      "source": "photo (IMG_7756)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source_image_size": [
+        3024,
+        4032
+      ]
+    },
+    {
+      "id": "scripps_virus_models_7757_splat",
+      "kind": "splat",
+      "subject": "scripps",
+      "title": "Scripps lab: 3D-printed virus and capsid models (2)",
+      "tags": [
+        "scripps",
+        "virus",
+        "3d-print",
+        "models"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/scripps_virus_models_IMG_7757.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_models_IMG_7757.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "7a7f99ed46e695c9542d6920b42693b9e5ed1a92fa29ae01298fc2e4ce181c0c",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_models_IMG_7757.jpg",
+      "source": "photo (IMG_7757)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source_image_size": [
+        3024,
+        4032
+      ]
+    },
+    {
+      "id": "art_photo_splat",
+      "kind": "splat",
+      "subject": "art",
+      "title": "Art standing in the lab (photo)",
+      "tags": [
+        "person",
+        "full-body",
+        "lab"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/art_photo_IMG_9389.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/art_photo_IMG_9389.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "28fd3e12e91e39b2e73f1109a032ce4676e04b441c259332048683437ea0f464",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_photo_IMG_9389.jpg",
+      "source": "photo (IMG_9389)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source_image_size": [
+        1409,
+        1878
+      ]
+    },
+    {
+      "id": "goodsell_portrait_mesh",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, textured 2.5D mesh",
+      "tags": [
+        "portrait",
+        "relief"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_mesh.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_mesh.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/goodsell_portrait_mesh.glb",
+      "bytes": 7869456,
+      "sha256": "6adc690fc6ac9b48627546f90f94d23c10356bff253ba84c5510191d5c65f89f",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> mesh"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 134362,
+      "faces": 252593,
+      "color": "texture"
+    },
+    {
+      "id": "goodsell_portrait_mesh_bright",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, textured 2.5D mesh (brightened)",
+      "tags": [
+        "portrait",
+        "relief"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_mesh_bright.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_mesh_bright.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/goodsell_portrait_mesh_bright.glb",
+      "bytes": 7869440,
+      "sha256": "75456b554d4fb8105e4ba1a99e5ebc5d1ff366ca4724a9fa786f93a69d81924f",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> mesh"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 134362,
+      "faces": 252593,
+      "color": "texture"
+    },
+    {
+      "id": "goodsell_portrait_splatlook",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, splat-look mesh (one quad per Gaussian)",
+      "tags": [
+        "portrait",
+        "splat-look"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_splatlook.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_splatlook.glb",
+      "cdn_url": null,
+      "bytes": 56498808,
+      "sha256": "b9ddb24e573ccad1d7375632ad1f64a1cd991005b8e4157cf64004449dcbb3d7",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> billboard mesh"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 1129896,
+      "faces": 564948,
+      "color": "texture"
+    },
+    {
+      "id": "art_photo_mesh",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art standing in the lab, vertex-colored 2.5D mesh",
+      "tags": [
+        "person",
+        "relief",
+        "lab"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/art_photo_IMG_9389_mesh.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_photo_IMG_9389_mesh.glb",
+      "cdn_url": null,
+      "bytes": 22543824,
+      "sha256": "b079910bc5e2f8f1f4bbd4c301122bb7773239415bc509425d1a9ceb8d4df890",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_photo_IMG_9389_mesh.jpg",
+      "source": "derived from art_photo_splat",
+      "method": {
+        "name": "SHARP splat -> grid mesh (front layer)",
+        "script": "ml-sharp tools/splat_to_mesh.py"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 573762,
+      "faces": 1113554,
+      "color": "vertex"
+    },
+    {
+      "id": "art_video_fullbody_glb",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art full-body 360 deg textured mesh (from orbit video)",
+      "tags": [
+        "person",
+        "full-body",
+        "360",
+        "riggable-candidate"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/art_video_IMG_9390_fullbody.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/art_video_IMG_9390_fullbody.glb",
+      "bytes": 11484608,
+      "sha256": "ddb80fe27f41739dfc48f1a649b0b76abb3c9ba2f8fef5c466f49ce8ac8ddb7b",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
+      "source": "video (IMG_9390, 17 s orbit)",
+      "method": {
+        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+        "detail": "medium",
+        "frames": 134,
+        "notes": "Ghost second head and an extra sheet on one side (subject moved); arbitrary scale (~1.35 m tall), rescale to real height."
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 29171,
+      "faces": 49999,
+      "color": "texture"
+    },
+    {
+      "id": "art_video_fullbody_usdz",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art full-body 360 deg textured mesh (USDZ for iOS / visionOS AR)",
+      "tags": [
+        "person",
+        "full-body",
+        "360",
+        "ar"
+      ],
+      "format": "usdz",
+      "mime": "model/vnd.usdz+zip",
+      "path": "mesh/art_video_IMG_9390_fullbody.usdz",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.usdz",
+      "cdn_url": null,
+      "bytes": 22033153,
+      "sha256": "476b7b0d39be97e36779f2a7c15d20f92b7be3dc469f9452e230bf2de4cf82ba",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
+      "source": "video (IMG_9390, 17 s orbit)",
+      "method": {
+        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+        "detail": "medium"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      }
+    }
+  ]
+}
