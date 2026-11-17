@@ -1,7 +1,7 @@
 # TheTunnelAsset
 
-3D assets for The Tunnel: Gaussian splats and meshes of David Goodsell, Art, and the Scripps lab,
-made from single photos and from a short phone video.
+3D assets for The Tunnel: Gaussian splats and meshes of David Goodsell, Art, and the Scripps
+building in the 1920s, made from single photos and from a short phone video.
 
 ```
 splat/        3D Gaussian Splatting .ply files (SHARP, one photo each)
@@ -16,17 +16,23 @@ tools/        build_manifest.py: regenerates assets.json
 | id | kind | subject | file | size |
 |---|---|---|---|---|
 | `goodsell_portrait_splat` | splat | David Goodsell | [splat/goodsell_portrait.ply](splat/goodsell_portrait.ply) | 66 MB |
-| `scripps_virus_panel_splat` | splat | Scripps lab | [splat/scripps_virus_panel_IMG_7748.ply](splat/scripps_virus_panel_IMG_7748.ply) | 66 MB |
-| `scripps_virus_models_7756_splat` | splat | Scripps lab | [splat/scripps_virus_models_IMG_7756.ply](splat/scripps_virus_models_IMG_7756.ply) | 66 MB |
-| `scripps_virus_models_7757_splat` | splat | Scripps lab | [splat/scripps_virus_models_IMG_7757.ply](splat/scripps_virus_models_IMG_7757.ply) | 66 MB |
+| `scripps_1924_splat` | splat | Scripps 1924 | [splat/scripps_1924_photo.ply](splat/scripps_1924_photo.ply) (raw SHARP output) | 66 MB |
+| `scripps_1924_no_sky_splat` | splat | Scripps 1924 | [splat/scripps_1924_no_sky.ply](splat/scripps_1924_no_sky.ply) (sky removed) | 35 MB |
+| `scripps_1924_sky_backdrop_splat` | splat | Scripps 1924 | [splat/scripps_1924_sky_backdrop.ply](splat/scripps_1924_sky_backdrop.ply) (sky as far backdrop) | 48 MB |
+| `scripps_1924_supersplat` | splat | Scripps 1924 | [splat/scripps_1924_supersplat.ply](splat/scripps_1924_supersplat.ply) (edited in SuperSplat, CC BY 4.0) | 32 MB |
 | `art_photo_splat` | splat | Art | [splat/art_photo_IMG_9389.ply](splat/art_photo_IMG_9389.ply) | 66 MB |
 | `goodsell_portrait_mesh` | mesh | David Goodsell | [mesh/goodsell_portrait_mesh.glb](mesh/goodsell_portrait_mesh.glb) | 8 MB |
 | `goodsell_portrait_mesh_bright` | mesh | David Goodsell | [mesh/goodsell_portrait_mesh_bright.glb](mesh/goodsell_portrait_mesh_bright.glb) | 8 MB |
 | `goodsell_portrait_splatlook` | mesh | David Goodsell | [mesh/goodsell_portrait_splatlook.glb](mesh/goodsell_portrait_splatlook.glb) | 56 MB |
+| `scripps_1924_splatlook` | mesh | Scripps 1924 | [mesh/scripps_1924_splatlook.glb](mesh/scripps_1924_splatlook.glb) (1.1M tris) | 50 MB |
+| `scripps_1924_splatlook_quest` | mesh | Scripps 1924 | [mesh/scripps_1924_splatlook_quest.glb](mesh/scripps_1924_splatlook_quest.glb) (290k tris, for Quest) | 13 MB |
 | `art_photo_mesh` | mesh | Art | [mesh/art_photo_IMG_9389_mesh.glb](mesh/art_photo_IMG_9389_mesh.glb) | 23 MB |
 | `art_video_fullbody_glb` | mesh | Art | [mesh/art_video_IMG_9390_fullbody.glb](mesh/art_video_IMG_9390_fullbody.glb) | 11 MB |
 | `art_video_fullbody_usdz` | mesh | Art | [mesh/art_video_IMG_9390_fullbody.usdz](mesh/art_video_IMG_9390_fullbody.usdz) | 22 MB |
 
+<p>
+<img src="thumbs/scripps_1924_splatlook.jpg" width="960" alt="Scripps 1924 splat-look meshes">
+</p>
 <p>
 <img src="thumbs/art_video_IMG_9390_fullbody.jpg" width="480" alt="Art full-body mesh, four views">
 <img src="thumbs/art_photo_IMG_9389_mesh.jpg" width="480" alt="Art photo mesh, three views">
@@ -37,7 +43,12 @@ tools/        build_manifest.py: regenerates assets.json
 - **Splats**: [SHARP](https://github.com/apple/ml-sharp) (Apple), one photo in, one 3DGS `.ply` out
   (about 1.18M Gaussians, 2 layers of 768x768). SHARP reconstructs only what the camera saw, so
   the back of every scene is empty. Look at them from roughly the front.
-- **2.5D meshes** (`goodsell_portrait_*`, `art_photo_mesh`): the front layer of a SHARP splat
+- **Scripps 1924**: SHARP on a 1920s photograph of the Scripps building. Cleaned versions
+  remove the sky and floaters, or push the sky out to a distant backdrop. `scripps_1924_supersplat`
+  is the version edited and published on SuperSplat.
+- **Splat-look meshes** (`*_splatlook*`): one small textured quad per Gaussian, so a plain mesh
+  renderer (Quest, three.js, Unity without a splat plugin) gets a splat-like look.
+- **2.5D meshes** (`goodsell_portrait_mesh*`, `art_photo_mesh`): the front layer of a SHARP splat
   triangulated as a grid, with triangles across depth jumps removed. A relief, not a closed object.
 - **Full-body mesh** (`art_video_fullbody_*`): Apple Object Capture (RealityKit
   `PhotogrammetrySession`, medium detail) on 134 sharp frames from a 17 s orbit video.
@@ -100,6 +111,14 @@ Things to know about `raw.githubusercontent.com`:
 - It supports HTTP range requests, but it doesn't guarantee bandwidth and is rate-limited for heavy traffic. For
   production, mirror the files to a CDN or object storage and keep the same `path`s.
 - GitHub rejects files over 100 MB. Keep new splats under that, or compress them first (`.spz` / `.sog`).
+
+## Credits and licenses
+
+- `splat/scripps_1924_supersplat.ply`: "Scripps 1924" by LMGL
+  ([superspl.at/scene/2e27822f](https://superspl.at/scene/2e27822f)), licensed
+  [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). You must credit the author when you reuse it.
+  Assets with a license have a `license` field in `assets.json`.
+- Splats were made with [SHARP](https://github.com/apple/ml-sharp). See its license for model terms.
 
 ## Adding an asset
 

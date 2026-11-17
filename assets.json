@@ -3,11 +3,11 @@
   "repo": "https://github.com/autinlab/TheTunnelAsset",
   "base_url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/",
   "updated": "2026-11-17",
-  "count": 11,
+  "count": 14,
   "subjects": [
     "art",
     "david-goodsell",
-    "scripps"
+    "scripps-1924"
   ],
   "assets": [
     {
@@ -50,25 +50,26 @@
       ]
     },
     {
-      "id": "scripps_virus_panel_splat",
+      "id": "scripps_1924_splat",
       "kind": "splat",
-      "subject": "scripps",
-      "title": "Scripps lab: framed virus capsid artwork",
+      "subject": "scripps-1924",
+      "title": "Scripps building, 1920s photo: raw SHARP splat",
       "tags": [
         "scripps",
-        "virus",
-        "artwork",
-        "lab"
+        "historic",
+        "building",
+        "1924",
+        "sepia"
       ],
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
-      "path": "splat/scripps_virus_panel_IMG_7748.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_panel_IMG_7748.ply",
+      "path": "splat/scripps_1924_photo.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_photo.ply",
       "cdn_url": null,
       "bytes": 66061086,
-      "sha256": "a90dc6ee5c3079c0d7d2ac7c2441e38dc0449e1a909666d9f4c09d5ade42abb3",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_panel_IMG_7748.jpg",
-      "source": "photo (IMG_7748)",
+      "sha256": "3b5dc82641293885de7d4d4a81d31c10c581eac5282833c05650ef2cbab8cc5a",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_photo.jpg",
+      "source": "1920s photograph",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
         "url": "https://github.com/apple/ml-sharp",
@@ -84,34 +85,36 @@
       },
       "gaussians": 1179648,
       "source_image_size": [
-        3024,
-        4032
+        1080,
+        706
       ]
     },
     {
-      "id": "scripps_virus_models_7756_splat",
+      "id": "scripps_1924_no_sky_splat",
       "kind": "splat",
-      "subject": "scripps",
-      "title": "Scripps lab: 3D-printed virus capsid models (1)",
+      "subject": "scripps-1924",
+      "title": "Scripps building, 1920s photo: cleaned splat, sky removed",
       "tags": [
         "scripps",
-        "virus",
-        "3d-print",
-        "models"
+        "historic",
+        "building",
+        "1924",
+        "cleaned"
       ],
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
-      "path": "splat/scripps_virus_models_IMG_7756.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_models_IMG_7756.ply",
+      "path": "splat/scripps_1924_no_sky.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_no_sky.ply",
       "cdn_url": null,
-      "bytes": 66061086,
-      "sha256": "4a83e3a1067dee54401ee5d3a6926f0dd0960e11d7822c79dbca264ae3f62918",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_models_IMG_7756.jpg",
-      "source": "photo (IMG_7756)",
+      "bytes": 34671517,
+      "sha256": "a023541965529ecf02167aabbb49aea7379f2055895fdb55a3476da67425a741",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
+      "source": "derived from scripps_1924_splat",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
         "url": "https://github.com/apple/ml-sharp",
-        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+        "post": "sky masked out, floaters removed (clean_splat.py)"
       },
       "coordinates": {
         "convention": "opencv",
@@ -121,36 +124,39 @@
         "units": "meters (approx.)",
         "to_y_up": "rotate 180 deg about X"
       },
-      "gaussians": 1179648,
+      "gaussians": 619120,
       "source_image_size": [
-        3024,
-        4032
+        1080,
+        706
       ]
     },
     {
-      "id": "scripps_virus_models_7757_splat",
+      "id": "scripps_1924_sky_backdrop_splat",
       "kind": "splat",
-      "subject": "scripps",
-      "title": "Scripps lab: 3D-printed virus and capsid models (2)",
+      "subject": "scripps-1924",
+      "title": "Scripps building, 1920s photo: cleaned splat with distant sky backdrop",
       "tags": [
         "scripps",
-        "virus",
-        "3d-print",
-        "models"
+        "historic",
+        "building",
+        "1924",
+        "cleaned",
+        "sky"
       ],
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
-      "path": "splat/scripps_virus_models_IMG_7757.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_virus_models_IMG_7757.ply",
+      "path": "splat/scripps_1924_sky_backdrop.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_sky_backdrop.ply",
       "cdn_url": null,
-      "bytes": 66061086,
-      "sha256": "7a7f99ed46e695c9542d6920b42693b9e5ed1a92fa29ae01298fc2e4ce181c0c",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_virus_models_IMG_7757.jpg",
-      "source": "photo (IMG_7757)",
+      "bytes": 47831965,
+      "sha256": "f336ca5f646e47973296f0af64b558bb2129b90f2a3aa40bba96d73f80f4308b",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_sky_backdrop.jpg",
+      "source": "derived from scripps_1924_splat",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
         "url": "https://github.com/apple/ml-sharp",
-        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+        "post": "sky pushed to a far backdrop, floaters removed (clean_splat.py)"
       },
       "coordinates": {
         "convention": "opencv",
@@ -160,11 +166,51 @@
         "units": "meters (approx.)",
         "to_y_up": "rotate 180 deg about X"
       },
-      "gaussians": 1179648,
+      "gaussians": 854128,
       "source_image_size": [
-        3024,
-        4032
+        1080,
+        706
       ]
+    },
+    {
+      "id": "scripps_1924_supersplat",
+      "kind": "splat",
+      "subject": "scripps-1924",
+      "title": "Scripps 1924: SuperSplat-edited splat (published scene)",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "edited"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/scripps_1924_supersplat.ply",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_supersplat.ply",
+      "cdn_url": null,
+      "bytes": 31872034,
+      "sha256": "e7bdb40653ebf31d8c7432b647510998d0888d94d24c5e379e45c4b1c9f74d66",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
+      "source": "https://superspl.at/scene/2e27822f",
+      "method": {
+        "name": "SHARP splat, cleaned and edited in SuperSplat"
+      },
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 569137,
+      "license": {
+        "name": "CC BY 4.0",
+        "url": "http://creativecommons.org/licenses/by/4.0/",
+        "author": "LMGL (https://superspl.at/user/lmgl)",
+        "attribution": "Scripps 1924 by LMGL, CC BY 4.0"
+      }
     },
     {
       "id": "art_photo_splat",
@@ -298,6 +344,78 @@
       },
       "vertices": 1129896,
       "faces": 564948,
+      "color": "texture"
+    },
+    {
+      "id": "scripps_1924_splatlook",
+      "kind": "mesh",
+      "subject": "scripps-1924",
+      "title": "Scripps 1924, splat-look mesh (one textured quad per Gaussian, 1.1M tris)",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "splat-look"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/scripps_1924_splatlook.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/scripps_1924_splatlook.glb",
+      "cdn_url": null,
+      "bytes": 49975212,
+      "sha256": "f2c2941870d1ededaa7ae039db3edac5e75f43e931e50f78ceb11b6e06c4bf15",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
+      "source": "derived from the Scripps 1924 splat",
+      "method": {
+        "name": "splat -> billboard mesh (splat2glb.py)"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 2271544,
+      "faces": 1135772,
+      "color": "texture"
+    },
+    {
+      "id": "scripps_1924_splatlook_quest",
+      "kind": "mesh",
+      "subject": "scripps-1924",
+      "title": "Scripps 1924, splat-look mesh decimated for Quest (290k tris)",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "splat-look",
+        "quest",
+        "mobile"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/scripps_1924_splatlook_quest.glb",
+      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/scripps_1924_splatlook_quest.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/scripps_1924_splatlook_quest.glb",
+      "bytes": 12875808,
+      "sha256": "1efcc298b25439477d8760866f807a01cf52f536731b276140414236d75bad96",
+      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
+      "source": "derived from the Scripps 1924 splat",
+      "method": {
+        "name": "splat -> billboard mesh (splat2glb.py), voxel-decimated"
+      },
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)"
+      },
+      "vertices": 585208,
+      "faces": 292604,
       "color": "texture"
     },
     {
