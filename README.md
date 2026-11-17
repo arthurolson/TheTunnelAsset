@@ -114,8 +114,9 @@ python3 tools/obj_mtl_to_glb.py surface.obj virus/capsids/foo.glb
   1. Keep the file locally in an `external/` folder inside its kind's folder, for example
      `video/external/tour.mp4`. Git ignores it.
   2. Commit its sidecar, `video/external/tour.mp4.meta.json`, with `"url"` set to where it's hosted.
-  3. The generator reads the stats and checksum from the local copy. Without one, give `"bytes"` and `"sha256"` in the
-     sidecar.
+  3. Run the generator with the local copy there. It reads the file's stats and checksum, and writes `bytes`,
+     `sha256` and the stats into the sidecar, so a clone without the file (or the GitHub Action) gets the same
+     `assets.json`.
   4. To host it as a Release asset:
      ```bash
      gh release create media-1 video/external/tour.mp4

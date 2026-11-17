@@ -16,5 +16,10 @@
     "name": "Mol* (molstar.org) glTF export",
     "notes": "whole virion: membrane, spike, M and E proteins"
   },
-  "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest."
+  "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest.",
+  "bytes": 324147752,
+  "sha256": "92053926c22a6e2341af9ad39092788dff5ceb7bc1dd945145f5223689a51a03",
+  "vertices": 6326760,
+  "faces": 12249600,
+  "color": "vertex"
 }

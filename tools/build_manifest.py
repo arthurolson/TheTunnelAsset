@@ -69,6 +69,7 @@ DEFAULT_COORDINATES = {"mesh": "gltf", "splat": "opencv", "molecule": "angstrom"
 
 # Fields the generator works out itself; a sidecar can't set them (except url, bytes and sha256 for external files).
 GENERATED = {"kind", "format", "mime", "path", "url", "cdn_url", "bytes", "sha256"}
+CHECK_ONLY = False  # set by --check: write nothing, not even sidecars
 
 
 class Problem(Exception):
@@ -343,7 +344,7 @@ def build(raw: str, cdn: str, problems: list[str]) -> list[dict]:
                     continue
             size = file.stat().st_size
             digest = sha256(file)
-            if meta.get("sha256") and meta["sha256"] != digest:
+            if meta.get("sha256") and meta["sha256"] != digest and not external:
                 problems.append(f"{rel}: sha256 {digest} doesn't match the sidecar's {meta['sha256']}")
             if not external and size > MAX_BYTES:
                 problems.append(f"{rel}: {size / 1e6:.1f} MB, over the {MAX_BYTES / 1e6:.0f} MB limit "
@@ -355,6 +356,15 @@ def build(raw: str, cdn: str, problems: list[str]) -> list[dict]:
             except Exception as e:  # an unreadable file is a problem to report, not a crash
                 problems.append(f"{rel}: can't read it ({e})")
                 continue
+            if external and (meta.get("bytes") != size or meta.get("sha256") != digest
+                             or any(meta.get(k) != v for k, v in stats.items())):
+                # Where the file isn't (GitHub Actions, other clones), the sidecar's size, checksum and stats stand in.
+                if CHECK_ONLY:
+                    problems.append(f"{rel_sidecar}: bytes and sha256 out of date; run python3 tools/build_manifest.py")
+                else:
+                    meta.update(bytes=size, sha256=digest, **stats)
+                    sidecar.write_text(json.dumps(meta, indent=2) + "\n")
+                    print(f"  (wrote bytes and sha256 into {rel_sidecar})")
         elif external and meta.get("bytes") and meta.get("sha256"):
             size, digest, stats = int(meta["bytes"]), meta["sha256"], {}
         else:
@@ -414,6 +424,8 @@ def main() -> int:
     parser.add_argument("--branch", help="branch the URLs point at (default: the current branch)")
     parser.add_argument("--check", action="store_true", help="don't write; fail if anything is wrong or out of date")
     args = parser.parse_args()
+    global CHECK_ONLY
+    CHECK_ONLY = args.check
 
     try:
         repo = args.repo or repo_from_git()
