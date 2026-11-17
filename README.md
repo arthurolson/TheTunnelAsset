@@ -84,8 +84,8 @@ jsDelivr, which is faster and has CORS caching.
 const BASE = "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/";
 const index = await (await fetch(BASE + "assets.json")).json();
 
-// all splats of the Scripps lab
-const splats = index.assets.filter(a => a.kind === "splat" && a.subject === "scripps");
+// all splats of the Scripps 1924 building
+const splats = index.assets.filter(a => a.kind === "splat" && a.subject === "scripps-1924");
 
 // one asset by id, streamed
 const art = index.assets.find(a => a.id === "art_video_fullbody_glb");
