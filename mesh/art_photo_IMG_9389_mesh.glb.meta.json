@@ -1,0 +1,17 @@
+{
+  "id": "art_photo_mesh",
+  "subject": "art",
+  "title": "Art standing in the lab, vertex-colored 2.5D mesh",
+  "tags": [
+    "person",
+    "relief",
+    "lab"
+  ],
+  "thumbnail": "thumbs/art_photo_IMG_9389_mesh.jpg",
+  "coordinates": "gltf",
+  "source": "derived from art_photo_splat",
+  "method": {
+    "name": "SHARP splat -> grid mesh (front layer)",
+    "script": "ml-sharp tools/splat_to_mesh.py"
+  }
+}

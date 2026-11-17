@@ -1,0 +1,36 @@
+# Regenerates assets.json on every push to main, so the app sees new assets without anyone running the script.
+# It also runs the checks (size limit, duplicate ids, thumbnails, checksums, streamable videos) and fails if one does.
+name: assets.json
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: [assets.json]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Tools
+        run: |
+          pip install pillow numpy
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - name: Regenerate
+        run: python tools/build_manifest.py --repo "$GITHUB_REPOSITORY" --branch "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}"
+      - name: Commit if it changed
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet assets.json; then echo "assets.json is up to date"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Regenerate assets.json" assets.json
+          git push

@@ -1,0 +1,10 @@
+{
+  "id": "test_pattern_720p",
+  "subject": "test",
+  "title": "Test pattern video, 720p, 8 s",
+  "tags": [
+    "test"
+  ],
+  "thumbnail": "thumbs/test_pattern_720p.jpg",
+  "source": "tools/make_test_assets.py"
+}

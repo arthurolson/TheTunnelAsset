@@ -1,0 +1,23 @@
+{
+  "id": "goodsell_portrait_splat",
+  "subject": "david-goodsell",
+  "title": "David Goodsell painting at his desk",
+  "tags": [
+    "portrait",
+    "artist",
+    "studio",
+    "watercolor"
+  ],
+  "thumbnail": "thumbs/goodsell_portrait.jpg",
+  "coordinates": "opencv",
+  "source": "photo",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+  },
+  "source_image_size": [
+    4908,
+    3614
+  ]
+}

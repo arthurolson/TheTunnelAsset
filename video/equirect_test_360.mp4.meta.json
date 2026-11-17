@@ -1,0 +1,14 @@
+{
+  "id": "equirect_test_360",
+  "subject": "test",
+  "title": "360 test video (equirectangular, mono), 6 s",
+  "tags": [
+    "test",
+    "equirect",
+    "360"
+  ],
+  "thumbnail": "thumbs/equirect_test_360.jpg",
+  "projection": "equirect",
+  "stereo": "mono",
+  "source": "tools/make_test_assets.py"
+}

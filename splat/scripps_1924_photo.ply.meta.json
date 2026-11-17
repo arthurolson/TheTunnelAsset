@@ -1,0 +1,24 @@
+{
+  "id": "scripps_1924_splat",
+  "subject": "scripps-1924",
+  "title": "Scripps building, 1920s photo: raw SHARP splat",
+  "tags": [
+    "scripps",
+    "historic",
+    "building",
+    "1924",
+    "sepia"
+  ],
+  "thumbnail": "thumbs/scripps_1924_photo.jpg",
+  "coordinates": "opencv",
+  "source": "1920s photograph",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+  },
+  "source_image_size": [
+    1080,
+    706
+  ]
+}

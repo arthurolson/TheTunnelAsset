@@ -1,0 +1,14 @@
+{
+  "id": "equirect_test_grid",
+  "subject": "test",
+  "title": "360 test grid (equirectangular)",
+  "tags": [
+    "test",
+    "equirect",
+    "360"
+  ],
+  "thumbnail": "thumbs/equirect_test_grid.jpg",
+  "projection": "equirect",
+  "source": "tools/make_test_assets.py",
+  "notes": "Image centre is straight ahead (FRONT); lines every 15 degrees."
+}

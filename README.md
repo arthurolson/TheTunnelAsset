@@ -1,42 +1,180 @@
 # TheTunnelAsset
 
-3D assets for The Tunnel: Gaussian splats and meshes of David Goodsell, Art, and the Scripps
-building in the 1920s, made from single photos and from a short phone video.
+Assets for The Tunnel, a shared mixed reality space for molecular biology on Meta Quest:
+- 3D portraits of David Goodsell, Art and the Scripps building in the 1920s (Gaussian splats and meshes);
+- images, videos, molecules and viruses, each kind in its own folder.
+
+The app reads `assets.json` when it starts, so an asset pushed here appears in the headset without a new build.
+This repository is a fork of [autinlab/TheTunnelAsset](https://github.com/autinlab/TheTunnelAsset). Every id and path
+from the original is unchanged.
+
+## Layout
 
 ```
-splat/        3D Gaussian Splatting .ply files (SHARP, one photo each)
-mesh/         textured / vertex-colored meshes (.glb, .usdz)
-thumbs/       small JPG thumbnails, one per asset
-assets.json   machine-readable index of every asset (query this from apps)
-tools/        build_manifest.py (regenerates assets.json) + the scripts that made the assets
+mesh/       .glb meshes (also .usdz for iOS / visionOS)       glTF y-up
+splat/      .ply 3D Gaussian splats                             OpenCV (y down)
+image/      .jpg / .png: posters, textures, 360 panoramas (tag "equirect")
+video/      .mp4, H.264 + AAC, up to 4K, faststart; 360 video tagged "equirect" (+ "stereo-tb" for top-bottom 3D)
+molecule/   .pdb / .cif atomic models, and .glb surfaces made from them   glTF y-up, Angstroms
+virus/      .glb whole-virus or capsid meshes, and .json instance lists   glTF y-up, Angstroms
+thumbs/     one .jpg per asset (about 480 x 360)
+tools/      build_manifest.py writes assets.json; the scripts that made the assets
+assets.json the index of every asset, for apps (generated: don't edit it by hand)
 ```
 
-## Assets
+Next to every asset file is a small metadata sidecar named after it, for example `mesh/foo.glb.meta.json`.
 
-| id | kind | subject | file | size |
-|---|---|---|---|---|
-| `goodsell_portrait_splat` | splat | David Goodsell | [splat/goodsell_portrait.ply](splat/goodsell_portrait.ply) | 66 MB |
-| `scripps_1924_splat` | splat | Scripps 1924 | [splat/scripps_1924_photo.ply](splat/scripps_1924_photo.ply) (raw SHARP output) | 66 MB |
-| `scripps_1924_no_sky_splat` | splat | Scripps 1924 | [splat/scripps_1924_no_sky.ply](splat/scripps_1924_no_sky.ply) (sky removed) | 35 MB |
-| `scripps_1924_sky_backdrop_splat` | splat | Scripps 1924 | [splat/scripps_1924_sky_backdrop.ply](splat/scripps_1924_sky_backdrop.ply) (sky as far backdrop) | 48 MB |
-| `scripps_1924_supersplat` | splat | Scripps 1924 | [splat/scripps_1924_supersplat.ply](splat/scripps_1924_supersplat.ply) (edited in SuperSplat, CC BY 4.0) | 32 MB |
-| `art_photo_splat` | splat | Art | [splat/art_photo_IMG_9389.ply](splat/art_photo_IMG_9389.ply) | 66 MB |
-| `goodsell_portrait_mesh` | mesh | David Goodsell | [mesh/goodsell_portrait_mesh.glb](mesh/goodsell_portrait_mesh.glb) | 8 MB |
-| `goodsell_portrait_mesh_bright` | mesh | David Goodsell | [mesh/goodsell_portrait_mesh_bright.glb](mesh/goodsell_portrait_mesh_bright.glb) | 8 MB |
-| `goodsell_portrait_splatlook` | mesh | David Goodsell | [mesh/goodsell_portrait_splatlook.glb](mesh/goodsell_portrait_splatlook.glb) | 56 MB |
-| `scripps_1924_splatlook` | mesh | Scripps 1924 | [mesh/scripps_1924_splatlook.glb](mesh/scripps_1924_splatlook.glb) (1.1M tris) | 50 MB |
-| `scripps_1924_splatlook_quest` | mesh | Scripps 1924 | [mesh/scripps_1924_splatlook_quest.glb](mesh/scripps_1924_splatlook_quest.glb) (290k tris, for Quest) | 13 MB |
-| `art_photo_mesh` | mesh | Art | [mesh/art_photo_IMG_9389_mesh.glb](mesh/art_photo_IMG_9389_mesh.glb) | 23 MB |
-| `art_video_fullbody_glb` | mesh | Art | [mesh/art_video_IMG_9390_fullbody.glb](mesh/art_video_IMG_9390_fullbody.glb) | 11 MB |
-| `art_video_fullbody_usdz` | mesh | Art | [mesh/art_video_IMG_9390_fullbody.usdz](mesh/art_video_IMG_9390_fullbody.usdz) | 22 MB |
+## Adding an asset, end to end
 
-<p>
-<img src="thumbs/scripps_1924_splatlook.jpg" width="960" alt="Scripps 1924 splat-look meshes">
-</p>
-<p>
-<img src="thumbs/art_video_IMG_9390_fullbody.jpg" width="480" alt="Art full-body mesh, four views">
-<img src="thumbs/art_photo_IMG_9389_mesh.jpg" width="480" alt="Art photo mesh, three views">
-</p>
+1. **Drop in the file.** Put it in its kind's folder, and a JPG thumbnail in `thumbs/`.
+2. **Write its sidecar** next to it as `<file>.meta.json`. Only `id` is required; `title`, `subject`, `tags` and
+   `thumbnail` are what the app's menu shows:
+   ```json
+   {
+     "id": "my_poster",
+     "title": "Poster of the week",
+     "subject": "art",
+     "tags": ["poster"],
+     "thumbnail": "thumbs/my_poster.jpg"
+   }
+   ```
+   Any other fields (`source`, `method`, `license`, `notes`...) are copied into `assets.json` as they are.
+3. **Run the generator and push:**
+   ```bash
+   python3 tools/build_manifest.py          # writes assets.json, and stops on any problem
+   git add -A && git commit -m "Add my poster" && git push
+   ```
+   The GitHub Action also regenerates `assets.json` on every push to main, so step 3 works without running the
+   script yourself. Running it first shows any problem before you push.
+4. **In the headset:** the asset is in the splat-box menu the next time The Tunnel starts. raw.githubusercontent.com
+   can take up to 5 minutes to show a new `assets.json`.
+
+### By kind
+
+| kind | files | sidecar extras | the generator reads |
+|---|---|---|---|
+| `mesh` | `.glb` (y-up, meters), `.usdz` | `coordinates` if not `"gltf"` | `vertices`, `faces`, `color` (`vertex`, `texture` or `material`) |
+| `splat` | `.ply` (3DGS) | `source_image_size` | `gaussians` |
+| `image` | `.jpg`, `.png` | `"projection": "equirect"` and the `equirect` tag for 360 panoramas | `width`, `height` |
+| `video` | `.mp4`: H.264 + AAC, 1080p to 4K, faststart | `projection`, `"stereo": "mono"` or `"top-bottom"` (tag `stereo-tb`) | `width`, `height`, `duration`, `fps`, `codec`, `audio_codec`, `faststart` |
+| `molecule` | `.pdb`, `.cif`, and `.glb` surfaces | `"surface": "<id of its glb>"` on the .pdb/.cif | `atoms`, `chains`; `vertices`, `faces` for .glb |
+| `virus` | `.glb` meshes, `.json` instance lists | | `vertices`, `faces`; `instances`, `proteins` |
+
+- **Images.** The centre of a 360 panorama is straight ahead (see `image/equirect_test_grid.png`).
+- **Videos must stream on a Quest.** Make them like this:
+  ```bash
+  ffmpeg -i in.mov -c:v libx264 -profile:v high -pix_fmt yuv420p -crf 20 -vf "scale='min(3840,iw)':-2" \
+         -c:a aac -b:a 160k -movflags +faststart video/my_clip.mp4
+  ```
+  The generator refuses a video whose `moov` atom is at the end, because it couldn't start playing until fully
+  downloaded.
+- **Molecules.** Give a `.pdb` / `.cif` the `surface` of a ready-made glb, and the app shows that glb.
+  `tools/molecule_to_glb.py` makes a spacefill glb from any PDB or mmCIF file, with colours by element or by chain and
+  shading baked in:
+  ```bash
+  curl -o molecule/1abc.cif https://files.rcsb.org/download/1ABC.cif
+  python3 tools/molecule_to_glb.py molecule/1abc.cif molecule/1abc_spacefill.glb --color chain
+  ```
+  Then write two sidecars: the glb's, and the cif's with `"surface": "<the glb's id>"`.
+- **Viruses.** An instance list builds a large assembly from protein meshes in the app. Each `protein` is the id of a
+  glb asset. Positions and quaternion rotations `[x, y, z, w]` are in the glTF frame (y-up, right-handed), in the list's
+  units:
+  ```json
+  {
+    "schema": "thetunnel-instances/1",
+    "units": "angstroms",
+    "meters_per_unit": 1e-10,
+    "instances": [
+      {"protein": "crambin_1crn_spacefill", "position": [8.0, 5.0, 60.0], "rotation": [0, 0, 0, 1]}
+    ]
+  }
+  ```
+  `virus/crambin_icosahedral_demo.json` is an example: 60 copies of crambin with icosahedral symmetry.
+
+### Large files
+
+- GitHub refuses files over 100 MB, so the generator stops at 95 MB.
+- Don't use Git LFS: raw.githubusercontent.com serves an LFS file's pointer, not its data. The generator refuses LFS
+  pointers.
+- Put a larger file (a long 4K video, say) in a GitHub Release or object storage instead:
+  1. Keep the file locally in an `external/` folder inside its kind's folder, for example
+     `video/external/tour.mp4`. Git ignores it.
+  2. Commit its sidecar, `video/external/tour.mp4.meta.json`, with `"url"` set to where it's hosted.
+  3. The generator reads the stats and checksum from the local copy. Without one, give `"bytes"` and `"sha256"` in the
+     sidecar.
+  4. To host it as a Release asset:
+     ```bash
+     gh release create media-1 video/external/tour.mp4
+     ```
+     Its url is `https://github.com/<owner>/TheTunnelAsset/releases/download/media-1/tour.mp4`.
+
+## The generator: tools/build_manifest.py
+
+```bash
+python3 tools/build_manifest.py                          # write assets.json
+python3 tools/build_manifest.py --check                  # write nothing; fail on any problem or a stale assets.json
+python3 tools/build_manifest.py --repo owner/name --branch dev   # URLs for another repository or branch
+```
+
+- **Where the URLs point.** The repository and branch come from `git remote get-url origin` and the current branch,
+  so a fork's `assets.json` points at the fork.
+- **What it stops on:**
+  - a file over 95 MB that isn't hosted elsewhere;
+  - a duplicate id;
+  - a missing thumbnail;
+  - a sha256 that doesn't match the one in the sidecar;
+  - a Git LFS pointer;
+  - a video that isn't faststart or isn't H.264/H.265;
+  - a molecule `surface` or virus `protein` that isn't an asset.
+- **Needs** Python 3.9+ and nothing else. Pillow is used for image sizes if it's installed, ffprobe for video stats.
+
+## Schema: `thetunnel-assets/2`
+
+```
+{
+  "schema": "thetunnel-assets/2",
+  "repo": "https://github.com/<owner>/TheTunnelAsset",
+  "branch": "main",
+  "base_url": "https://raw.githubusercontent.com/<owner>/TheTunnelAsset/main/",
+  "updated": "YYYY-MM-DD",
+  "count": N,
+  "kinds": [...],
+  "subjects": [...],
+  "assets": [ ... ]
+}
+```
+
+**Every asset has:**
+
+| field | |
+|---|---|
+| `id` | stable; apps refer to assets by it |
+| `kind` | `mesh`, `splat`, `image`, `video`, `molecule` or `virus` |
+| `subject`, `title`, `tags` | |
+| `format`, `mime` | `gltf-binary` `model/gltf-binary`, `usdz`, `gaussian-splat-ply`, `jpeg`, `png`, `mp4` `video/mp4`, `pdb` `chemical/x-pdb`, `mmcif` `chemical/x-mmcif`, `instance-list-json` `application/json` |
+| `path` | |
+| `url` | the file: raw.githubusercontent.com, or where an external file is hosted |
+| `cdn_url` | jsDelivr; `null` at 20 MB or more, and for external files |
+| `bytes`, `sha256` | for caching and checking downloads |
+| `thumbnail` | a JPG url |
+
+**Some assets also have:**
+- `coordinates`, for meshes, splats, molecules and viruses: `convention`, `x`, `y`, `z`, `units`, and
+  `meters_per_unit`. `meters_per_unit` is 1 for meters and 1e-10 for Angstroms, so an app can show things at their
+  real size.
+- `license`: `name`, `url`, `author`, `attribution`. Show the `attribution` with the asset.
+- The stats for its kind (see "By kind").
+- Anything else its sidecar gives.
+
+**Changes from `thetunnel-assets/1`:**
+- New kinds `image`, `video`, `molecule` and `virus`.
+- New top-level `branch` and `kinds`.
+- `coordinates.meters_per_unit`.
+- Per-kind stats.
+- `color` is now read from the glb itself: the vertex-coloured meshes that v1 called `texture` are now `vertex`.
+- Assets come from sidecars instead of a list in the Python file.
+
+Every v1 field is still there, with the same meaning. Apps should ignore kinds and fields they don't know.
 
 ## How they were made
 
@@ -56,74 +194,20 @@ tools/        build_manifest.py (regenerates assets.json) + the scripts that mad
   and an extra sheet of surface on one side. Its scale is arbitrary (about 1.35 m tall), so rescale it to his real
   height before use. It is a candidate for auto-rigging (Mixamo / AccuRIG, then Unity Humanoid).
 
-## Coordinate conventions
-
-| kind | convention | up | notes |
-|---|---|---|---|
-| splat `.ply` | OpenCV: x right, **y down**, z forward | -Y | camera at origin looking +Z; rotate 180 deg about X for y-up viewers (SuperSplat, Unity) |
-| mesh `.glb` / `.usdz` | glTF: x right, **y up** | +Y | opens upright in Blender, Unity, three.js, Quick Look |
-
-Splat `.ply` files use the standard 3DGS layout (`x y z f_dc_0..2 opacity scale_0..2 rot_0..3`,
-degree-0 SH, sRGB colors), so they load in SuperSplat, gsplat.js, Spark, three.js splat loaders, and
-[UnityGaussianSplatting](https://github.com/aras-p/UnityGaussianSplatting) (import step needed in Unity).
-
-## Using `assets.json` from an app
-
-Every asset has a direct, streamable URL:
-
-```
-https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/<path>
-```
-
-`assets.json` lists every asset with its `id`, `kind` (`splat` or `mesh`), `subject`, `tags`, `format`,
-`mime`, `url`, `bytes`, `sha256` (for caching), `thumbnail`, `coordinates`, and per-format stats
-(`gaussians` for splats; `vertices`, `faces` for GLB). Files under 20 MB also have a `cdn_url` on
-jsDelivr, which is faster and has CORS caching.
-
-```js
-const BASE = "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/";
-const index = await (await fetch(BASE + "assets.json")).json();
-
-// all splats of the Scripps 1924 building
-const splats = index.assets.filter(a => a.kind === "splat" && a.subject === "scripps-1924");
-
-// one asset by id, streamed
-const art = index.assets.find(a => a.id === "art_video_fullbody_glb");
-const res = await fetch(art.url);            // raw.githubusercontent.com sends CORS: *
-const reader = res.body.getReader();         // stream it, or just: await res.arrayBuffer()
-```
-
-```csharp
-// Unity
-var req = UnityWebRequest.Get("https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/assets.json");
-yield return req.SendWebRequest();
-var json = req.downloadHandler.text;  // parse with JsonUtility / Newtonsoft, then GET asset.url
-```
-
-```bash
-# command line: list the ids and URLs of all meshes
-curl -s https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/assets.json \
-  | jq -r '.assets[] | select(.kind=="mesh") | "\(.id)\t\(.url)"'
-```
-
-Things to know about `raw.githubusercontent.com`:
-- It sends `Access-Control-Allow-Origin: *`, so browsers can fetch directly.
-- It supports HTTP range requests, but it doesn't guarantee bandwidth and is rate-limited for heavy traffic. For
-  production, mirror the files to a CDN or object storage and keep the same `path`s.
-- GitHub rejects files over 100 MB. Keep new splats under that, or compress them first (`.spz` / `.sog`).
-
 ## Credits and licenses
 
 - `splat/scripps_1924_supersplat.ply`: "Scripps 1924" by LMGL
   ([superspl.at/scene/2e27822f](https://superspl.at/scene/2e27822f)), licensed
   [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). You must credit the author when you reuse it.
   Assets with a license have a `license` field in `assets.json`.
+- `molecule/1crn.cif`: PDB entry 1CRN (crambin, M.M. Teeter) from the [RCSB PDB](https://www.rcsb.org/structure/1CRN),
+  CC0. The spacefill glb is made from it with `tools/molecule_to_glb.py`.
 - Splats were made with [SHARP](https://github.com/apple/ml-sharp). See its license for model terms.
 
 ## Making new assets (the exact scripts used for the assets above)
 
 Use these scripts as they are. They hold the settings that produced the current assets.
-Python scripts need `numpy plyfile trimesh` (+ `scipy pillow` for frames); the
+These Python scripts need `numpy plyfile trimesh` (+ `scipy pillow` for frames); the
 [ml-sharp](https://github.com/apple/ml-sharp) conda env has most of them.
 
 **Photo -> splat -> mesh**

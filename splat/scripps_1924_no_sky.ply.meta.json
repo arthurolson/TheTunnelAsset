@@ -1,0 +1,25 @@
+{
+  "id": "scripps_1924_no_sky_splat",
+  "subject": "scripps-1924",
+  "title": "Scripps building, 1920s photo: cleaned splat, sky removed",
+  "tags": [
+    "scripps",
+    "historic",
+    "building",
+    "1924",
+    "cleaned"
+  ],
+  "thumbnail": "thumbs/scripps_1924_no_sky.jpg",
+  "coordinates": "opencv",
+  "source": "derived from scripps_1924_splat",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+    "post": "sky masked out, floaters removed (clean_splat.py)"
+  },
+  "source_image_size": [
+    1080,
+    706
+  ]
+}

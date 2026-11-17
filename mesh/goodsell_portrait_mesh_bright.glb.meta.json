@@ -1,0 +1,15 @@
+{
+  "id": "goodsell_portrait_mesh_bright",
+  "subject": "david-goodsell",
+  "title": "David Goodsell portrait, textured 2.5D mesh (brightened)",
+  "tags": [
+    "portrait",
+    "relief"
+  ],
+  "thumbnail": "thumbs/goodsell_portrait.jpg",
+  "coordinates": "gltf",
+  "source": "derived from goodsell_portrait_splat",
+  "method": {
+    "name": "SHARP splat -> mesh"
+  }
+}

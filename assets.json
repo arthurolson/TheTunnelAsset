@@ -1,15 +1,344 @@
 {
-  "schema": "thetunnel-assets/1",
-  "repo": "https://github.com/autinlab/TheTunnelAsset",
-  "base_url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/",
+  "schema": "thetunnel-assets/2",
+  "repo": "https://github.com/arthurolson/TheTunnelAsset",
+  "branch": "main",
+  "base_url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/",
   "updated": "2026-11-17",
-  "count": 14,
+  "count": 20,
+  "kinds": [
+    "image",
+    "mesh",
+    "molecule",
+    "splat",
+    "video",
+    "virus"
+  ],
   "subjects": [
     "art",
     "david-goodsell",
-    "scripps-1924"
+    "molecules",
+    "scripps-1924",
+    "test"
   ],
   "assets": [
+    {
+      "id": "art_photo_mesh",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art standing in the lab, vertex-colored 2.5D mesh",
+      "tags": [
+        "person",
+        "relief",
+        "lab"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/art_photo_IMG_9389_mesh.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/art_photo_IMG_9389_mesh.glb",
+      "cdn_url": null,
+      "bytes": 22543824,
+      "sha256": "b079910bc5e2f8f1f4bbd4c301122bb7773239415bc509425d1a9ceb8d4df890",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/art_photo_IMG_9389_mesh.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 573762,
+      "faces": 1113554,
+      "color": "vertex",
+      "source": "derived from art_photo_splat",
+      "method": {
+        "name": "SHARP splat -> grid mesh (front layer)",
+        "script": "ml-sharp tools/splat_to_mesh.py"
+      }
+    },
+    {
+      "id": "art_video_fullbody_glb",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art full-body 360 deg textured mesh (from orbit video)",
+      "tags": [
+        "person",
+        "full-body",
+        "360",
+        "riggable-candidate"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/art_video_IMG_9390_fullbody.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/art_video_IMG_9390_fullbody.glb",
+      "bytes": 11484608,
+      "sha256": "ddb80fe27f41739dfc48f1a649b0b76abb3c9ba2f8fef5c466f49ce8ac8ddb7b",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 29171,
+      "faces": 49999,
+      "color": "texture",
+      "source": "video (IMG_9390, 17 s orbit)",
+      "method": {
+        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+        "detail": "medium",
+        "frames": 134,
+        "notes": "Ghost second head and an extra sheet on one side (subject moved); arbitrary scale (~1.35 m tall), rescale to real height."
+      }
+    },
+    {
+      "id": "art_video_fullbody_usdz",
+      "kind": "mesh",
+      "subject": "art",
+      "title": "Art full-body 360 deg textured mesh (USDZ for iOS / visionOS AR)",
+      "tags": [
+        "person",
+        "full-body",
+        "360",
+        "ar"
+      ],
+      "format": "usdz",
+      "mime": "model/vnd.usdz+zip",
+      "path": "mesh/art_video_IMG_9390_fullbody.usdz",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.usdz",
+      "cdn_url": null,
+      "bytes": 22033153,
+      "sha256": "476b7b0d39be97e36779f2a7c15d20f92b7be3dc469f9452e230bf2de4cf82ba",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "source": "video (IMG_9390, 17 s orbit)",
+      "method": {
+        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+        "detail": "medium"
+      }
+    },
+    {
+      "id": "goodsell_portrait_mesh",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, textured 2.5D mesh",
+      "tags": [
+        "portrait",
+        "relief"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_mesh.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/goodsell_portrait_mesh.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/goodsell_portrait_mesh.glb",
+      "bytes": 7869456,
+      "sha256": "6adc690fc6ac9b48627546f90f94d23c10356bff253ba84c5510191d5c65f89f",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 134362,
+      "faces": 252593,
+      "color": "vertex",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> mesh"
+      }
+    },
+    {
+      "id": "goodsell_portrait_mesh_bright",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, textured 2.5D mesh (brightened)",
+      "tags": [
+        "portrait",
+        "relief"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_mesh_bright.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/goodsell_portrait_mesh_bright.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/goodsell_portrait_mesh_bright.glb",
+      "bytes": 7869440,
+      "sha256": "75456b554d4fb8105e4ba1a99e5ebc5d1ff366ca4724a9fa786f93a69d81924f",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 134362,
+      "faces": 252593,
+      "color": "vertex",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> mesh"
+      }
+    },
+    {
+      "id": "goodsell_portrait_splatlook",
+      "kind": "mesh",
+      "subject": "david-goodsell",
+      "title": "David Goodsell portrait, splat-look mesh (one quad per Gaussian)",
+      "tags": [
+        "portrait",
+        "splat-look"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/goodsell_portrait_splatlook.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/goodsell_portrait_splatlook.glb",
+      "cdn_url": null,
+      "bytes": 56498808,
+      "sha256": "b9ddb24e573ccad1d7375632ad1f64a1cd991005b8e4157cf64004449dcbb3d7",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 1129896,
+      "faces": 564948,
+      "color": "vertex",
+      "source": "derived from goodsell_portrait_splat",
+      "method": {
+        "name": "SHARP splat -> billboard mesh"
+      }
+    },
+    {
+      "id": "scripps_1924_splatlook",
+      "kind": "mesh",
+      "subject": "scripps-1924",
+      "title": "Scripps 1924, splat-look mesh (one textured quad per Gaussian, 1.1M tris)",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "splat-look"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/scripps_1924_splatlook.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/scripps_1924_splatlook.glb",
+      "cdn_url": null,
+      "bytes": 49975212,
+      "sha256": "f2c2941870d1ededaa7ae039db3edac5e75f43e931e50f78ceb11b6e06c4bf15",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 2271544,
+      "faces": 1135772,
+      "color": "vertex",
+      "source": "derived from the Scripps 1924 splat",
+      "method": {
+        "name": "splat -> billboard mesh (splat2glb.py)"
+      }
+    },
+    {
+      "id": "scripps_1924_splatlook_quest",
+      "kind": "mesh",
+      "subject": "scripps-1924",
+      "title": "Scripps 1924, splat-look mesh decimated for Quest (290k tris)",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "splat-look",
+        "quest",
+        "mobile"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/scripps_1924_splatlook_quest.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/scripps_1924_splatlook_quest.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/scripps_1924_splatlook_quest.glb",
+      "bytes": 12875808,
+      "sha256": "1efcc298b25439477d8760866f807a01cf52f536731b276140414236d75bad96",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 585208,
+      "faces": 292604,
+      "color": "vertex",
+      "source": "derived from the Scripps 1924 splat",
+      "method": {
+        "name": "splat -> billboard mesh (splat2glb.py), voxel-decimated"
+      }
+    },
+    {
+      "id": "art_photo_splat",
+      "kind": "splat",
+      "subject": "art",
+      "title": "Art standing in the lab (photo)",
+      "tags": [
+        "person",
+        "full-body",
+        "lab"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/art_photo_IMG_9389.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/art_photo_IMG_9389.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "28fd3e12e91e39b2e73f1109a032ce4676e04b441c259332048683437ea0f464",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/art_photo_IMG_9389.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source": "photo (IMG_9389)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
+      "source_image_size": [
+        1409,
+        1878
+      ]
+    },
     {
       "id": "goodsell_portrait_splat",
       "kind": "splat",
@@ -24,69 +353,30 @@
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
       "path": "splat/goodsell_portrait.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/goodsell_portrait.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/goodsell_portrait.ply",
       "cdn_url": null,
       "bytes": 66061086,
       "sha256": "b8d906025fc2d986d2ba87fc3a9867294e141ada8381c9900c5204be49f33aa3",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
       "source": "photo",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
         "url": "https://github.com/apple/ml-sharp",
         "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
       },
-      "coordinates": {
-        "convention": "opencv",
-        "x": "right",
-        "y": "down",
-        "z": "forward",
-        "units": "meters (approx.)",
-        "to_y_up": "rotate 180 deg about X"
-      },
-      "gaussians": 1179648,
       "source_image_size": [
         4908,
         3614
-      ]
-    },
-    {
-      "id": "scripps_1924_splat",
-      "kind": "splat",
-      "subject": "scripps-1924",
-      "title": "Scripps building, 1920s photo: raw SHARP splat",
-      "tags": [
-        "scripps",
-        "historic",
-        "building",
-        "1924",
-        "sepia"
-      ],
-      "format": "gaussian-splat-ply",
-      "mime": "application/octet-stream",
-      "path": "splat/scripps_1924_photo.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_photo.ply",
-      "cdn_url": null,
-      "bytes": 66061086,
-      "sha256": "3b5dc82641293885de7d4d4a81d31c10c581eac5282833c05650ef2cbab8cc5a",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_photo.jpg",
-      "source": "1920s photograph",
-      "method": {
-        "name": "SHARP (Apple ml-sharp)",
-        "url": "https://github.com/apple/ml-sharp",
-        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
-      },
-      "coordinates": {
-        "convention": "opencv",
-        "x": "right",
-        "y": "down",
-        "z": "forward",
-        "units": "meters (approx.)",
-        "to_y_up": "rotate 180 deg about X"
-      },
-      "gaussians": 1179648,
-      "source_image_size": [
-        1080,
-        706
       ]
     },
     {
@@ -104,11 +394,21 @@
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
       "path": "splat/scripps_1924_no_sky.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_no_sky.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/scripps_1924_no_sky.ply",
       "cdn_url": null,
       "bytes": 34671517,
       "sha256": "a023541965529ecf02167aabbb49aea7379f2055895fdb55a3476da67425a741",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 619120,
       "source": "derived from scripps_1924_splat",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
@@ -116,15 +416,47 @@
         "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
         "post": "sky masked out, floaters removed (clean_splat.py)"
       },
+      "source_image_size": [
+        1080,
+        706
+      ]
+    },
+    {
+      "id": "scripps_1924_splat",
+      "kind": "splat",
+      "subject": "scripps-1924",
+      "title": "Scripps building, 1920s photo: raw SHARP splat",
+      "tags": [
+        "scripps",
+        "historic",
+        "building",
+        "1924",
+        "sepia"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/scripps_1924_photo.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/scripps_1924_photo.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "3b5dc82641293885de7d4d4a81d31c10c581eac5282833c05650ef2cbab8cc5a",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_photo.jpg",
       "coordinates": {
         "convention": "opencv",
         "x": "right",
         "y": "down",
         "z": "forward",
         "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
         "to_y_up": "rotate 180 deg about X"
       },
-      "gaussians": 619120,
+      "gaussians": 1179648,
+      "source": "1920s photograph",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+      },
       "source_image_size": [
         1080,
         706
@@ -146,11 +478,21 @@
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
       "path": "splat/scripps_1924_sky_backdrop.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_sky_backdrop.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/scripps_1924_sky_backdrop.ply",
       "cdn_url": null,
       "bytes": 47831965,
       "sha256": "f336ca5f646e47973296f0af64b558bb2129b90f2a3aa40bba96d73f80f4308b",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_sky_backdrop.jpg",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_sky_backdrop.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 854128,
       "source": "derived from scripps_1924_splat",
       "method": {
         "name": "SHARP (Apple ml-sharp)",
@@ -158,15 +500,6 @@
         "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
         "post": "sky pushed to a far backdrop, floaters removed (clean_splat.py)"
       },
-      "coordinates": {
-        "convention": "opencv",
-        "x": "right",
-        "y": "down",
-        "z": "forward",
-        "units": "meters (approx.)",
-        "to_y_up": "rotate 180 deg about X"
-      },
-      "gaussians": 854128,
       "source_image_size": [
         1080,
         706
@@ -187,24 +520,25 @@
       "format": "gaussian-splat-ply",
       "mime": "application/octet-stream",
       "path": "splat/scripps_1924_supersplat.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/scripps_1924_supersplat.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/scripps_1924_supersplat.ply",
       "cdn_url": null,
       "bytes": 31872034,
       "sha256": "e7bdb40653ebf31d8c7432b647510998d0888d94d24c5e379e45c4b1c9f74d66",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
-      "source": "https://superspl.at/scene/2e27822f",
-      "method": {
-        "name": "SHARP splat, cleaned and edited in SuperSplat"
-      },
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/scripps_1924_no_sky.jpg",
       "coordinates": {
         "convention": "opencv",
         "x": "right",
         "y": "down",
         "z": "forward",
         "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
         "to_y_up": "rotate 180 deg about X"
       },
       "gaussians": 569137,
+      "source": "https://superspl.at/scene/2e27822f",
+      "method": {
+        "name": "SHARP splat, cleaned and edited in SuperSplat"
+      },
       "license": {
         "name": "CC BY 4.0",
         "url": "http://creativecommons.org/licenses/by/4.0/",
@@ -213,313 +547,189 @@
       }
     },
     {
-      "id": "art_photo_splat",
-      "kind": "splat",
-      "subject": "art",
-      "title": "Art standing in the lab (photo)",
+      "id": "equirect_test_grid",
+      "kind": "image",
+      "subject": "test",
+      "title": "360 test grid (equirectangular)",
       "tags": [
-        "person",
-        "full-body",
-        "lab"
+        "test",
+        "equirect",
+        "360"
       ],
-      "format": "gaussian-splat-ply",
-      "mime": "application/octet-stream",
-      "path": "splat/art_photo_IMG_9389.ply",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/splat/art_photo_IMG_9389.ply",
-      "cdn_url": null,
-      "bytes": 66061086,
-      "sha256": "28fd3e12e91e39b2e73f1109a032ce4676e04b441c259332048683437ea0f464",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_photo_IMG_9389.jpg",
-      "source": "photo (IMG_9389)",
-      "method": {
-        "name": "SHARP (Apple ml-sharp)",
-        "url": "https://github.com/apple/ml-sharp",
-        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
-      },
-      "coordinates": {
-        "convention": "opencv",
-        "x": "right",
-        "y": "down",
-        "z": "forward",
-        "units": "meters (approx.)",
-        "to_y_up": "rotate 180 deg about X"
-      },
-      "gaussians": 1179648,
-      "source_image_size": [
-        1409,
-        1878
-      ]
+      "format": "png",
+      "mime": "image/png",
+      "path": "image/equirect_test_grid.png",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/image/equirect_test_grid.png",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/image/equirect_test_grid.png",
+      "bytes": 79747,
+      "sha256": "c0d1d98c31af9a539f76a29de74922fde3abed1e3321152bbc7ae63fea071394",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/equirect_test_grid.jpg",
+      "width": 4096,
+      "height": 2048,
+      "projection": "equirect",
+      "source": "tools/make_test_assets.py",
+      "notes": "Image centre is straight ahead (FRONT); lines every 15 degrees."
     },
     {
-      "id": "goodsell_portrait_mesh",
-      "kind": "mesh",
-      "subject": "david-goodsell",
-      "title": "David Goodsell portrait, textured 2.5D mesh",
+      "id": "equirect_test_360",
+      "kind": "video",
+      "subject": "test",
+      "title": "360 test video (equirectangular, mono), 6 s",
       "tags": [
-        "portrait",
-        "relief"
+        "test",
+        "equirect",
+        "360"
       ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/goodsell_portrait_mesh.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_mesh.glb",
-      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/goodsell_portrait_mesh.glb",
-      "bytes": 7869456,
-      "sha256": "6adc690fc6ac9b48627546f90f94d23c10356bff253ba84c5510191d5c65f89f",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
-      "source": "derived from goodsell_portrait_splat",
-      "method": {
-        "name": "SHARP splat -> mesh"
-      },
+      "format": "mp4",
+      "mime": "video/mp4",
+      "path": "video/equirect_test_360.mp4",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/video/equirect_test_360.mp4",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/video/equirect_test_360.mp4",
+      "bytes": 439956,
+      "sha256": "50adaea4899df01de5d0a38f751c483d8e234b9d51c66f74a17092554afc4509",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/equirect_test_360.jpg",
+      "faststart": true,
+      "width": 2048,
+      "height": 1024,
+      "codec": "h264",
+      "fps": 25.0,
+      "audio_codec": "aac",
+      "duration": 6.0,
+      "projection": "equirect",
+      "stereo": "mono",
+      "source": "tools/make_test_assets.py"
+    },
+    {
+      "id": "test_pattern_720p",
+      "kind": "video",
+      "subject": "test",
+      "title": "Test pattern video, 720p, 8 s",
+      "tags": [
+        "test"
+      ],
+      "format": "mp4",
+      "mime": "video/mp4",
+      "path": "video/test_pattern_720p.mp4",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/video/test_pattern_720p.mp4",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/video/test_pattern_720p.mp4",
+      "bytes": 3247532,
+      "sha256": "59f37f29e2b1c8aac3d3c53a326ecf1aa6a92f148bec6983e43fa97f3c319dc5",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/test_pattern_720p.jpg",
+      "faststart": true,
+      "width": 1280,
+      "height": 720,
+      "codec": "h264",
+      "fps": 30.0,
+      "audio_codec": "aac",
+      "duration": 8.0,
+      "source": "tools/make_test_assets.py"
+    },
+    {
+      "id": "crambin_1crn",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "Crambin (PDB 1CRN), atomic model",
+      "tags": [
+        "protein",
+        "pdb",
+        "small"
+      ],
+      "format": "mmcif",
+      "mime": "chemical/x-mmcif",
+      "path": "molecule/1crn.cif",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/1crn.cif",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/1crn.cif",
+      "bytes": 69506,
+      "sha256": "23787562c427d7c1abe5420e86d5f1d0a6c7007dec1e8ce85645a6d69c32e8ba",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/1crn.jpg",
       "coordinates": {
         "convention": "gltf",
         "x": "right",
         "y": "up",
         "z": "toward viewer",
-        "units": "meters (approx.)"
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
       },
-      "vertices": 134362,
-      "faces": 252593,
-      "color": "texture"
-    },
-    {
-      "id": "goodsell_portrait_mesh_bright",
-      "kind": "mesh",
-      "subject": "david-goodsell",
-      "title": "David Goodsell portrait, textured 2.5D mesh (brightened)",
-      "tags": [
-        "portrait",
-        "relief"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/goodsell_portrait_mesh_bright.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_mesh_bright.glb",
-      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/goodsell_portrait_mesh_bright.glb",
-      "bytes": 7869440,
-      "sha256": "75456b554d4fb8105e4ba1a99e5ebc5d1ff366ca4724a9fa786f93a69d81924f",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
-      "source": "derived from goodsell_portrait_splat",
-      "method": {
-        "name": "SHARP splat -> mesh"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 134362,
-      "faces": 252593,
-      "color": "texture"
-    },
-    {
-      "id": "goodsell_portrait_splatlook",
-      "kind": "mesh",
-      "subject": "david-goodsell",
-      "title": "David Goodsell portrait, splat-look mesh (one quad per Gaussian)",
-      "tags": [
-        "portrait",
-        "splat-look"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/goodsell_portrait_splatlook.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/goodsell_portrait_splatlook.glb",
-      "cdn_url": null,
-      "bytes": 56498808,
-      "sha256": "b9ddb24e573ccad1d7375632ad1f64a1cd991005b8e4157cf64004449dcbb3d7",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/goodsell_portrait.jpg",
-      "source": "derived from goodsell_portrait_splat",
-      "method": {
-        "name": "SHARP splat -> billboard mesh"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 1129896,
-      "faces": 564948,
-      "color": "texture"
-    },
-    {
-      "id": "scripps_1924_splatlook",
-      "kind": "mesh",
-      "subject": "scripps-1924",
-      "title": "Scripps 1924, splat-look mesh (one textured quad per Gaussian, 1.1M tris)",
-      "tags": [
-        "scripps",
-        "historic",
-        "building",
-        "1924",
-        "splat-look"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/scripps_1924_splatlook.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/scripps_1924_splatlook.glb",
-      "cdn_url": null,
-      "bytes": 49975212,
-      "sha256": "f2c2941870d1ededaa7ae039db3edac5e75f43e931e50f78ceb11b6e06c4bf15",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
-      "source": "derived from the Scripps 1924 splat",
-      "method": {
-        "name": "splat -> billboard mesh (splat2glb.py)"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 2271544,
-      "faces": 1135772,
-      "color": "texture"
-    },
-    {
-      "id": "scripps_1924_splatlook_quest",
-      "kind": "mesh",
-      "subject": "scripps-1924",
-      "title": "Scripps 1924, splat-look mesh decimated for Quest (290k tris)",
-      "tags": [
-        "scripps",
-        "historic",
-        "building",
-        "1924",
-        "splat-look",
-        "quest",
-        "mobile"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/scripps_1924_splatlook_quest.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/scripps_1924_splatlook_quest.glb",
-      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/scripps_1924_splatlook_quest.glb",
-      "bytes": 12875808,
-      "sha256": "1efcc298b25439477d8760866f807a01cf52f536731b276140414236d75bad96",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/scripps_1924_splatlook.jpg",
-      "source": "derived from the Scripps 1924 splat",
-      "method": {
-        "name": "splat -> billboard mesh (splat2glb.py), voxel-decimated"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 585208,
-      "faces": 292604,
-      "color": "texture"
-    },
-    {
-      "id": "art_photo_mesh",
-      "kind": "mesh",
-      "subject": "art",
-      "title": "Art standing in the lab, vertex-colored 2.5D mesh",
-      "tags": [
-        "person",
-        "relief",
-        "lab"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/art_photo_IMG_9389_mesh.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_photo_IMG_9389_mesh.glb",
-      "cdn_url": null,
-      "bytes": 22543824,
-      "sha256": "b079910bc5e2f8f1f4bbd4c301122bb7773239415bc509425d1a9ceb8d4df890",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_photo_IMG_9389_mesh.jpg",
-      "source": "derived from art_photo_splat",
-      "method": {
-        "name": "SHARP splat -> grid mesh (front layer)",
-        "script": "ml-sharp tools/splat_to_mesh.py"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 573762,
-      "faces": 1113554,
-      "color": "vertex"
-    },
-    {
-      "id": "art_video_fullbody_glb",
-      "kind": "mesh",
-      "subject": "art",
-      "title": "Art full-body 360 deg textured mesh (from orbit video)",
-      "tags": [
-        "person",
-        "full-body",
-        "360",
-        "riggable-candidate"
-      ],
-      "format": "gltf-binary",
-      "mime": "model/gltf-binary",
-      "path": "mesh/art_video_IMG_9390_fullbody.glb",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.glb",
-      "cdn_url": "https://cdn.jsdelivr.net/gh/autinlab/TheTunnelAsset@main/mesh/art_video_IMG_9390_fullbody.glb",
-      "bytes": 11484608,
-      "sha256": "ddb80fe27f41739dfc48f1a649b0b76abb3c9ba2f8fef5c466f49ce8ac8ddb7b",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
-      "source": "video (IMG_9390, 17 s orbit)",
-      "method": {
-        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
-        "detail": "medium",
-        "frames": 134,
-        "notes": "Ghost second head and an extra sheet on one side (subject moved); arbitrary scale (~1.35 m tall), rescale to real height."
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
-      },
-      "vertices": 29171,
-      "faces": 49999,
-      "color": "texture"
-    },
-    {
-      "id": "art_video_fullbody_usdz",
-      "kind": "mesh",
-      "subject": "art",
-      "title": "Art full-body 360 deg textured mesh (USDZ for iOS / visionOS AR)",
-      "tags": [
-        "person",
-        "full-body",
-        "360",
-        "ar"
-      ],
-      "format": "usdz",
-      "mime": "model/vnd.usdz+zip",
-      "path": "mesh/art_video_IMG_9390_fullbody.usdz",
-      "url": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/mesh/art_video_IMG_9390_fullbody.usdz",
-      "cdn_url": null,
-      "bytes": 22033153,
-      "sha256": "476b7b0d39be97e36779f2a7c15d20f92b7be3dc469f9452e230bf2de4cf82ba",
-      "thumbnail": "https://raw.githubusercontent.com/autinlab/TheTunnelAsset/main/thumbs/art_video_IMG_9390_fullbody.jpg",
-      "source": "video (IMG_9390, 17 s orbit)",
-      "method": {
-        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
-        "detail": "medium"
-      },
-      "coordinates": {
-        "convention": "gltf",
-        "x": "right",
-        "y": "up",
-        "z": "toward viewer",
-        "units": "meters (approx.)"
+      "atoms": 327,
+      "chains": 1,
+      "surface": "crambin_1crn_spacefill",
+      "source": "https://www.rcsb.org/structure/1CRN",
+      "pdb_id": "1CRN",
+      "license": {
+        "name": "CC0 1.0",
+        "url": "https://creativecommons.org/publicdomain/zero/1.0/",
+        "attribution": "PDB 1CRN (Teeter, M.M.), RCSB Protein Data Bank, CC0"
       }
+    },
+    {
+      "id": "crambin_1crn_spacefill",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "Crambin (PDB 1CRN), spacefill",
+      "tags": [
+        "protein",
+        "spacefill",
+        "small"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/1crn_spacefill.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/1crn_spacefill.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/1crn_spacefill.glb",
+      "bytes": 534740,
+      "sha256": "35a74cce052d32baa115dc44d503798d25e19055f71ed142b00e2bbae8a80e27",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/1crn.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 13734,
+      "faces": 26160,
+      "color": "vertex",
+      "source": "derived from crambin_1crn",
+      "method": {
+        "name": "tools/molecule_to_glb.py",
+        "notes": "one sphere per atom, CPK colours, shading baked into vertex colours"
+      },
+      "pdb_id": "1CRN"
+    },
+    {
+      "id": "crambin_icosahedral_demo",
+      "kind": "virus",
+      "subject": "molecules",
+      "title": "Demo assembly: 60 crambins with icosahedral symmetry",
+      "tags": [
+        "test",
+        "assembly",
+        "icosahedral",
+        "instances"
+      ],
+      "format": "instance-list-json",
+      "mime": "application/json",
+      "path": "virus/crambin_icosahedral_demo.json",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/virus/crambin_icosahedral_demo.json",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/virus/crambin_icosahedral_demo.json",
+      "bytes": 10615,
+      "sha256": "00d8599166ec80c65c28a2958fa0b74b20b01562e7e4126b124579d415a6fbe1",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/crambin_icosahedral_demo.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "instances": 60,
+      "proteins": [
+        "crambin_1crn_spacefill"
+      ],
+      "source": "tools/make_test_assets.py",
+      "notes": "Not a real virus: shows the instance-list format (protein id + position + rotation, in Angstroms)."
     }
   ]
 }

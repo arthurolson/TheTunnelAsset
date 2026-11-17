@@ -1,0 +1,20 @@
+{
+  "id": "art_video_fullbody_glb",
+  "subject": "art",
+  "title": "Art full-body 360 deg textured mesh (from orbit video)",
+  "tags": [
+    "person",
+    "full-body",
+    "360",
+    "riggable-candidate"
+  ],
+  "thumbnail": "thumbs/art_video_IMG_9390_fullbody.jpg",
+  "coordinates": "gltf",
+  "source": "video (IMG_9390, 17 s orbit)",
+  "method": {
+    "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+    "detail": "medium",
+    "frames": 134,
+    "notes": "Ghost second head and an extra sheet on one side (subject moved); arbitrary scale (~1.35 m tall), rescale to real height."
+  }
+}

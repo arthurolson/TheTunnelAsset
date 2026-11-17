@@ -1,0 +1,18 @@
+{
+  "id": "art_video_fullbody_usdz",
+  "subject": "art",
+  "title": "Art full-body 360 deg textured mesh (USDZ for iOS / visionOS AR)",
+  "tags": [
+    "person",
+    "full-body",
+    "360",
+    "ar"
+  ],
+  "thumbnail": "thumbs/art_video_IMG_9390_fullbody.jpg",
+  "coordinates": "gltf",
+  "source": "video (IMG_9390, 17 s orbit)",
+  "method": {
+    "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+    "detail": "medium"
+  }
+}

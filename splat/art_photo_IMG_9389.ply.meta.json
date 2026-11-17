@@ -1,0 +1,22 @@
+{
+  "id": "art_photo_splat",
+  "subject": "art",
+  "title": "Art standing in the lab (photo)",
+  "tags": [
+    "person",
+    "full-body",
+    "lab"
+  ],
+  "thumbnail": "thumbs/art_photo_IMG_9389.jpg",
+  "coordinates": "opencv",
+  "source": "photo (IMG_9389)",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw."
+  },
+  "source_image_size": [
+    1409,
+    1878
+  ]
+}

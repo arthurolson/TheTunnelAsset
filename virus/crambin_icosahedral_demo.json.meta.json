@@ -1,0 +1,14 @@
+{
+  "id": "crambin_icosahedral_demo",
+  "subject": "molecules",
+  "title": "Demo assembly: 60 crambins with icosahedral symmetry",
+  "tags": [
+    "test",
+    "assembly",
+    "icosahedral",
+    "instances"
+  ],
+  "thumbnail": "thumbs/crambin_icosahedral_demo.jpg",
+  "source": "tools/make_test_assets.py",
+  "notes": "Not a real virus: shows the instance-list format (protein id + position + rotation, in Angstroms)."
+}

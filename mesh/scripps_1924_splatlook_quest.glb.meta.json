@@ -1,0 +1,20 @@
+{
+  "id": "scripps_1924_splatlook_quest",
+  "subject": "scripps-1924",
+  "title": "Scripps 1924, splat-look mesh decimated for Quest (290k tris)",
+  "tags": [
+    "scripps",
+    "historic",
+    "building",
+    "1924",
+    "splat-look",
+    "quest",
+    "mobile"
+  ],
+  "thumbnail": "thumbs/scripps_1924_splatlook.jpg",
+  "coordinates": "gltf",
+  "source": "derived from the Scripps 1924 splat",
+  "method": {
+    "name": "splat -> billboard mesh (splat2glb.py), voxel-decimated"
+  }
+}

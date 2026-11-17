@@ -1,0 +1,26 @@
+{
+  "id": "scripps_1924_sky_backdrop_splat",
+  "subject": "scripps-1924",
+  "title": "Scripps building, 1920s photo: cleaned splat with distant sky backdrop",
+  "tags": [
+    "scripps",
+    "historic",
+    "building",
+    "1924",
+    "cleaned",
+    "sky"
+  ],
+  "thumbnail": "thumbs/scripps_1924_sky_backdrop.jpg",
+  "coordinates": "opencv",
+  "source": "derived from scripps_1924_splat",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+    "post": "sky pushed to a far backdrop, floaters removed (clean_splat.py)"
+  },
+  "source_image_size": [
+    1080,
+    706
+  ]
+}

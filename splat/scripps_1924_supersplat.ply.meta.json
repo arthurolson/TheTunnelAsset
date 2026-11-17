@@ -1,0 +1,24 @@
+{
+  "id": "scripps_1924_supersplat",
+  "subject": "scripps-1924",
+  "title": "Scripps 1924: SuperSplat-edited splat (published scene)",
+  "tags": [
+    "scripps",
+    "historic",
+    "building",
+    "1924",
+    "edited"
+  ],
+  "thumbnail": "thumbs/scripps_1924_no_sky.jpg",
+  "coordinates": "opencv",
+  "source": "https://superspl.at/scene/2e27822f",
+  "method": {
+    "name": "SHARP splat, cleaned and edited in SuperSplat"
+  },
+  "license": {
+    "name": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "author": "LMGL (https://superspl.at/user/lmgl)",
+    "attribution": "Scripps 1924 by LMGL, CC BY 4.0"
+  }
+}
