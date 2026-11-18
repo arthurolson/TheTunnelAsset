@@ -1,7 +1,9 @@
 """Draw a thumbnail of a glb: its triangles seen from the front (+Z, toward the viewer), in their vertex colours or
 material colours, with simple shading, on a dark background. For assets that have no picture of their own.
 
-    python3 tools/glb_thumbnail.py mesh/foo.glb thumbs/foo.jpg [--max-triangles 300000]
+    python3 tools/glb_thumbnail.py mesh/foo.glb thumbs/foo.jpg [--max-triangles 300000] [--views 4]
+
+--views 4 draws it from the front, right, back and left side by side (960 x 360), for full 3D models.
 
 Handles node transforms (so instanced capsids come out whole), indexed or not, uint8/uint16/float colours.
 Very large meshes are drawn from a sample of their triangles. Needs numpy and Pillow.
@@ -44,6 +46,19 @@ def accessor(gltf: dict, binary: bytes, index: int) -> np.ndarray:
     return out
 
 
+def texture_image(gltf: dict, binary: bytes, texture: int) -> np.ndarray:
+    """A glb's embedded texture as RGB floats 0-1."""
+    import io
+
+    image = gltf["images"][gltf["textures"][texture]["source"]]
+    view = gltf["bufferViews"][image["bufferView"]]
+    start = view.get("byteOffset", 0)
+    with Image.open(io.BytesIO(binary[start:start + view["byteLength"]])) as im:
+        im = im.convert("RGB")
+        im.thumbnail((1024, 1024))
+        return np.asarray(im, np.float32) / 255.0
+
+
 def node_matrix(node: dict) -> np.ndarray:
     if "matrix" in node:
         return np.array(node["matrix"], np.float64).reshape(4, 4).T
@@ -70,9 +85,17 @@ def triangles(gltf: dict, binary: bytes) -> tuple[np.ndarray, np.ndarray]:
             pos = accessor(gltf, binary, p["attributes"]["POSITION"])
             idx = accessor(gltf, binary, p["indices"]).astype(np.int64).reshape(-1) if "indices" in p else np.arange(len(pos))
             tris = idx[: len(idx) // 3 * 3].reshape(-1, 3)
+            mat = gltf.get("materials", [{}])[p["material"]] if "material" in p else {}
+            texture = mat.get("pbrMetallicRoughness", {}).get("baseColorTexture")
             if "COLOR_0" in p["attributes"]:
                 col = accessor(gltf, binary, p["attributes"]["COLOR_0"])[:, :3]
                 colour = col[tris].mean(1)
+            elif texture is not None and "TEXCOORD_0" in p["attributes"]:
+                # The texture at each triangle's middle (sRGB, made linear like vertex colours).
+                image = texture_image(gltf, binary, texture["index"])
+                uv = accessor(gltf, binary, p["attributes"]["TEXCOORD_0"])[tris].mean(1) % 1.0
+                h, w = image.shape[:2]
+                colour = image[(uv[:, 1] * (h - 1)).astype(int), (uv[:, 0] * (w - 1)).astype(int)] ** 2.2
             else:
                 mat = gltf.get("materials", [{}])[p["material"]] if "material" in p else {}
                 base = mat.get("pbrMetallicRoughness", {}).get("baseColorFactor", [0.8, 0.8, 0.8, 1])
@@ -98,7 +121,9 @@ def triangles(gltf: dict, binary: bytes) -> tuple[np.ndarray, np.ndarray]:
     return np.concatenate(out_t), np.concatenate(out_c)
 
 
-def render(tris: np.ndarray, colours: np.ndarray, out: Path, max_triangles: int) -> None:
+def render(tris: np.ndarray, colours: np.ndarray, out: Path | None, max_triangles: int, size=SIZE) -> Image.Image:
+    global SIZE
+    SIZE = size
     if len(tris) > max_triangles:
         keep = np.random.default_rng(0).choice(len(tris), max_triangles, replace=False)
         tris, colours = tris[keep], colours[keep]
@@ -122,7 +147,16 @@ def render(tris: np.ndarray, colours: np.ndarray, out: Path, max_triangles: int)
     for i in order:
         c = tuple(int(v * 255) for v in rgb[i])
         d.polygon([tuple(p) for p in xy[i]], fill=c)
-    im.save(out, quality=88)
+    if out is not None:
+        im.save(out, quality=88)
+    return im
+
+
+def turned(tris: np.ndarray, degrees: float) -> np.ndarray:
+    """The triangles turned about the vertical (y) axis, as if walking round the model."""
+    a = np.radians(degrees)
+    r = np.array([[np.cos(a), 0, np.sin(a)], [0, 1, 0], [-np.sin(a), 0, np.cos(a)]], np.float32)
+    return tris @ r.T
 
 
 def main() -> None:
@@ -130,10 +164,17 @@ def main() -> None:
     parser.add_argument("glb", type=Path)
     parser.add_argument("out", type=Path)
     parser.add_argument("--max-triangles", type=int, default=300_000)
+    parser.add_argument("--views", type=int, choices=[1, 4], default=1)
     args = parser.parse_args()
     gltf, binary = read_glb(args.glb)
     tris, colours = triangles(gltf, binary)
-    render(tris, colours, args.out, args.max_triangles)
+    if args.views == 1:
+        render(tris, colours, args.out, args.max_triangles)
+    else:
+        sheet = Image.new("RGB", (960, 360), (16, 16, 18))
+        for k, degrees in enumerate((0, 90, 180, 270)):
+            sheet.paste(render(turned(tris, degrees), colours, None, args.max_triangles, (240, 360)), (240 * k, 0))
+        sheet.save(args.out, quality=88)
     print(f"{args.out}: {len(tris)} triangles drawn{' (sampled)' if len(tris) > args.max_triangles else ''}")
 
 

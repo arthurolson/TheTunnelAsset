@@ -1,12 +1,16 @@
 """Splat-look mesh: one flat quad per Gaussian (2 largest axes, +-SIGMA std), unlit vertex colors.
 
-Usage: python tools/splat2glb.py in.ply out.glb [sigma=1.6] [target_splats=0] [copyright]
+Usage: python tools/splat2glb.py in.ply out.glb [sigma=1.6] [target_splats=0] [copyright] [--soft]
+--soft: each quad fades out from its centre (a radial falloff texture) and by its Gaussian's opacity (vertex alpha),
+alpha-blended, for a softer, more splat-like look in viewers that blend (The Tunnel draws them opaque).
 target_splats > 0 voxel-decimates (keeps the most visible splat per cell, enlarges it) -
 e.g. 100000 gave the 290k-tri Quest version of Scripps 1924.
 Input is an OpenCV-convention 3DGS .ply (SHARP); output is glTF y-up.
 """
-import sys, json, struct, numpy as np
+import sys, json, struct, zlib, numpy as np
 from plyfile import PlyData
+SOFT = "--soft" in sys.argv
+sys.argv = [a for a in sys.argv if a != "--soft"]
 src, dst = sys.argv[1], sys.argv[2]
 COPYRIGHT = sys.argv[5] if len(sys.argv) > 5 else ""
 SIGMA = float(sys.argv[3]) if len(sys.argv) > 3 else 1.6
@@ -54,13 +58,28 @@ P = P.astype(np.float32)
 srgb = np.clip(0.5 + 0.28209479*np.stack([v['f_dc_0'], v['f_dc_1'], v['f_dc_2']], 1), 0, 1)
 lin = np.where(srgb <= 0.04045, srgb/12.92, ((srgb+0.055)/1.055)**2.4)
 col = np.repeat((lin*255+0.5).astype(np.uint8), 4, axis=0)
-col = np.c_[col, np.full(len(col), 255, np.uint8)]
+alpha = np.repeat((1 / (1 + np.exp(-v['opacity'])) * 255 + 0.5).astype(np.uint8), 4) if SOFT else np.full(len(col), 255, np.uint8)
+col = np.c_[col, alpha]
 base = (np.arange(n, dtype=np.uint32)*4)[:, None]
 idx = (base + np.array([0, 1, 2, 0, 2, 3], np.uint32)).ravel()
 
 def pad4(b, fill=b'\x00'): return b + fill*((4 - len(b) % 4) % 4)
+
+def falloff_png(size=64):
+    """A white disc fading out like the Gaussian across the quad (+-SIGMA std), to nothing at its edge."""
+    r = np.hypot(*np.meshgrid(np.linspace(-1, 1, size), np.linspace(-1, 1, size)))
+    a = np.clip(np.exp(-0.5 * (r * SIGMA) ** 2) * (1 - r ** 2), 0, 1)
+    rgba = np.dstack([np.full_like(a, 255), np.full_like(a, 255), np.full_like(a, 255), a * 255]).astype(np.uint8)
+    raw = b"".join(b"\x00" + rgba[y].tobytes() for y in range(size))
+    chunk = lambda k, d: struct.pack(">I", len(d)) + k + d + struct.pack(">I", zlib.crc32(k + d) & 0xffffffff)
+    return b"\x89PNG\r\n\x1a\n" + chunk(b"IHDR", struct.pack(">IIBBBBB", size, size, 8, 6, 0, 0, 0)) + chunk(b"IDAT", zlib.compress(raw, 9)) + chunk(b"IEND", b"")
+
 bp, bc, bi = P.tobytes(), col.tobytes(), idx.tobytes()
 bin_ = pad4(bp) ; oc = len(bin_); bin_ += pad4(bc); oi = len(bin_); bin_ += pad4(bi)
+if SOFT:
+    uv = np.tile(np.array([[0, 1], [1, 1], [1, 0], [0, 0]], np.float32), (n, 1)).tobytes()
+    ou = len(bin_); bin_ += pad4(uv)
+    png = falloff_png(); og = len(bin_); bin_ += pad4(png)
 gltf = {
   "asset": {"version": "2.0", "generator": "splat2glb (quads from Gaussian splats)",
             "copyright": COPYRIGHT},
@@ -79,6 +98,18 @@ gltf = {
                  "min": P.min(0).tolist(), "max": P.max(0).tolist()},
                 {"bufferView": 1, "componentType": 5121, "normalized": True, "count": len(col), "type": "VEC4"},
                 {"bufferView": 2, "componentType": 5125, "count": len(idx), "type": "SCALAR"}]}
+if SOFT:
+    gltf["bufferViews"] += [{"buffer": 0, "byteOffset": ou, "byteLength": len(uv), "target": 34962},
+                            {"buffer": 0, "byteOffset": og, "byteLength": len(png)}]
+    gltf["accessors"].append({"bufferView": 3, "componentType": 5126, "count": len(P), "type": "VEC2"})
+    gltf["meshes"][0]["primitives"][0]["attributes"]["TEXCOORD_0"] = 3
+    gltf["images"] = [{"bufferView": 4, "mimeType": "image/png"}]
+    gltf["samplers"] = [{"magFilter": 9729, "minFilter": 9729, "wrapS": 33071, "wrapT": 33071}]
+    gltf["textures"] = [{"source": 0, "sampler": 0}]
+    mat = gltf["materials"][0]
+    mat["pbrMetallicRoughness"]["baseColorTexture"] = {"index": 0}
+    mat["alphaMode"] = "BLEND"
+    gltf["buffers"][0]["byteLength"] = len(bin_)
 js = pad4(json.dumps(gltf, separators=(',', ':')).encode(), b' ')
 total = 12 + 8 + len(js) + 8 + len(bin_)
 with open(dst, 'wb') as fh:

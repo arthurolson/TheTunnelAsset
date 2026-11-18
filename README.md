@@ -220,7 +220,81 @@ Every v1 field is still there, with the same meaning. Apps should ignore kinds a
   CC0. The spacefill glb is made from it with `tools/molecule_to_glb.py`.
 - Splats were made with [SHARP](https://github.com/apple/ml-sharp). See its license for model terms.
 
-## Making new assets (the exact scripts used for the assets above)
+## Pipelines: one command, one asset
+
+Each pipeline takes one input file and writes the asset files, a thumbnail and a sidecar for each, then regenerates
+`assets.json`. Check the thumbnails, then `git add -A && git commit && git push`, and the asset is in the headset.
+
+**Setting up (once).** Both pipelines run with the Python of a conda environment that has SHARP and the libraries
+they use:
+
+```bash
+git clone https://github.com/apple/ml-sharp && cd ml-sharp
+conda create -n sharp python=3.13 && conda activate sharp
+pip install -r requirements.txt
+pip install plyfile trimesh scipy pillow opencv-python-headless
+```
+
+### A. One photo -> splat -> mesh: `tools/photo_to_asset.py`
+
+```bash
+~/miniforge3/envs/sharp/bin/python tools/photo_to_asset.py photos/lab.jpg \
+    --id art_lab --subject art --title "Art in the lab" --tags person,lab --splatlook --background 92
+```
+
+It writes:
+
+| file | id | what it is |
+|---|---|---|
+| `splat/<id>.ply` | `<id>_splat` | the SHARP splat: 1,179,648 Gaussians (2 layers of 768 x 768), OpenCV coordinates |
+| `mesh/<id>_mesh.glb` | `<id>_mesh` | its front layer as a vertex-coloured relief (glTF y-up, about 1M triangles) |
+| `mesh/<id>_mesh_quest.glb` | `<id>_mesh_quest` | the relief merged on a grid to about 300k triangles; headsets load it instead |
+| `mesh/<id>_splatlook.glb` | `<id>_splatlook` | with `--splatlook`: one quad per Gaussian (left out if over 95 MB) |
+| `mesh/<id>_splatlook_quest.glb` | `<id>_splatlook_quest` | the same, voxel-decimated to about 300k triangles for Quest |
+| `thumbs/<id>.jpg`, `thumbs/<id>_mesh.jpg` | | the photo, and a drawing of the mesh |
+
+- **The relief mesh.** SHARP's front layer is triangulated, two triangles per cell, leaving out triangles:
+  - across a depth jump (max z / min z ≥ 1.04);
+  - on near-transparent points (opacity ≤ 0.1).
+- **Options:**
+  - `--background P` drops anything further than the P-th percentile of depth (a sky or a far wall) from the mesh
+    and the splat-look.
+  - `--soft` makes the splat-look quads fade out from their centre and by their opacity (alpha-blended). The Tunnel
+    draws them opaque.
+  - `--device cuda` or `cpu` where there is no Apple silicon. On a 24 GB Mac, SHARP's first prediction on `mps`,
+    with Unity open, seems to have taken the whole Mac down. Close Unity first, or use `--device cpu`, which is slower
+    but light.
+  - `--splat file.ply` starts from a splat you already have.
+- **Its limits:**
+  - SHARP reconstructs only what the camera saw. The back of everything is empty, and the mesh is a relief, not a
+    closed object.
+  - Look at the results from roughly the front.
+
+### B. Orbit video -> full 3D model: `tools/video_to_asset.sh`
+
+**Not yet tested end to end.** It runs the step-by-step tools below, which made `art_video_IMG_9390_fullbody`.
+
+```bash
+tools/video_to_asset.sh orbit.mov --id art_standing --subject art --title "Art, standing" --height 1.80
+```
+
+It writes `mesh/<id>_fullbody.glb` and `.usdz` (real size, feet at y = 0) and a four-view thumbnail. It needs a Mac
+with Apple silicon (Apple Object Capture) and takes a few minutes for about 130 frames.
+- **Settings:** `--detail full` for a hero asset (`reduced` if the file comes out over 95 MB).
+- **Frames:** `--fps` and `--drop` choose them (10 per second, blurriest 20% left out).
+- **On Windows or Linux:** run the frames through RealityScan, Meshroom or COLMAP + OpenMVS, then
+  `tools/obj_to_glb.py`.
+
+The capture tips under "Making new assets step by step" below matter more than any setting.
+
+### Too large for GitHub
+
+A splat or model over 95 MB stops either pipeline. Then:
+- crop it with `--background`;
+- or compress a splat to `.spz` / `.sog`;
+- or host the file elsewhere with its `url` in the sidecar (see "Large files" above).
+
+## Making new assets step by step (what the pipelines run)
 
 Use these scripts as they are. They hold the settings that produced the current assets.
 These Python scripts need `numpy plyfile trimesh` (+ `scipy pillow` for frames); the
@@ -265,10 +339,3 @@ Capture tips. Most bad results come from the subject moving.
 - Shiny, black and very thin parts (glasses, loose hair) reconstruct poorly.
 - For rigging: clean up in Blender, decimate to about 50k tris, auto-rig in Mixamo or AccuRIG,
   then use Unity Humanoid.
-
-## Adding an asset
-
-1. Put the file in `splat/` or `mesh/` and a JPG thumbnail in `thumbs/`.
-2. Add an entry to `ASSETS` in `tools/build_manifest.py`.
-3. Run `python tools/build_manifest.py` (needs `numpy plyfile trimesh`), then commit `assets.json`
-   with the files.
