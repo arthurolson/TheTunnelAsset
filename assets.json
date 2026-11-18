@@ -922,7 +922,28 @@
       "method": {
         "name": "tools/glb_grid_simplify.py",
         "notes": "vertices merged on a 7.2 A grid, done ahead so a headset makes its toy at once"
-      }
+      },
+      "collider": {
+        "kind": "box",
+        "center": [
+          0.000585,
+          0.000234,
+          0.005274
+        ],
+        "rotation": [
+          0.695113,
+          -0.009594,
+          0.71878,
+          -0.009036
+        ],
+        "size": [
+          0.190805,
+          1.314902,
+          1.314724
+        ],
+        "volume": 0.329851
+      },
+      "collider_note": "The Tunnel's toy collider, fitted ahead of time in the Unity Editor (toy units: 0.2 per 167 A)"
     },
     {
       "id": "egfr_ligand_9s3x",
