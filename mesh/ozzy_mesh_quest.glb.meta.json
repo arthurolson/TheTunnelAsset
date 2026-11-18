@@ -1,0 +1,20 @@
+{
+  "id": "ozzy_mesh_quest",
+  "subject": "school-photo",
+  "title": "Ozzy at 6, 2.5D relief mesh for Quest",
+  "tags": [
+    "portrait",
+    "school-photo",
+    "child",
+    "relief",
+    "quest",
+    "mobile"
+  ],
+  "thumbnail": "thumbs/ozzy_mesh.jpg",
+  "coordinates": "gltf",
+  "source": "derived from ozzy_mesh",
+  "method": {
+    "name": "tools/glb_grid_simplify.py (vertices merged on a grid)",
+    "target_triangles": 300000
+  }
+}

@@ -260,6 +260,12 @@ It writes:
 - **Options:**
   - `--background P` drops anything further than the P-th percentile of depth (a sky or a far wall) from the mesh
     and the splat-look.
+  - `--background-depth D` drops anything further than D meters from the camera instead, for a backdrop just
+    behind the subject. In a studio portrait, look for the empty gap in depth between the person and the backdrop.
+  - `--main-piece` keeps only the mesh's main piece, dropping loose bits such as a table edge beside a photographed
+    print.
+  - `--trim F` leaves out a margin of F (e.g. 0.05) at each edge of the photo, for a photo of a print with its border
+    or a ragged edge.
   - `--soft` makes the splat-look quads fade out from their centre and by their opacity (alpha-blended). The Tunnel
     draws them opaque.
   - `--device`: SHARP runs on the CPU by default, which takes about 2 minutes and 9 GB of memory on a Mac. `mps`

@@ -1,0 +1,24 @@
+{
+  "id": "ozzy_splat",
+  "subject": "school-photo",
+  "title": "Ozzy at 6 (splat)",
+  "tags": [
+    "portrait",
+    "school-photo",
+    "child"
+  ],
+  "thumbnail": "thumbs/ozzy.jpg",
+  "coordinates": "opencv",
+  "source": "photo (ozzy_school_photo.jpg)",
+  "method": {
+    "name": "SHARP (Apple ml-sharp)",
+    "url": "https://github.com/apple/ml-sharp",
+    "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+    "device": "cpu",
+    "script": "tools/photo_to_asset.py"
+  },
+  "source_image_size": [
+    1459,
+    2000
+  ]
+}

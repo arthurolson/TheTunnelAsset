@@ -65,7 +65,8 @@ def read_splat(ply: Path):
     return data, data["vertex"].data
 
 
-def relief_mesh(vertices, out: Path, background: float | None, layers: int = 2) -> dict:
+def relief_mesh(vertices, out: Path, background: float | None, layers: int = 2, background_depth: float | None = None,
+                main_piece: bool = False, trim: float = 0.0) -> dict:
     """The front layer of SHARP's grid, triangulated: 2 triangles per cell, none across a depth jump (max z / min z
     >= 1.04) or on near-transparent points (opacity <= 0.1), nor beyond the background cut; y-up, vertex colours."""
     import trimesh
@@ -86,9 +87,15 @@ def relief_mesh(vertices, out: Path, background: float | None, layers: int = 2) 
     points = xyz.reshape(-1, 3)
     z = points[faces][:, :, 2]
     keep = (z.max(1) / np.maximum(z.min(1), 1e-6) < 1.04) & (opacity[faces].min(1) > 0.1)
-    cut = None
-    if background is not None:
+    if trim > 0:
+        # A margin round the photo's edges left out (what lies beyond a photographed print, its ragged edge).
+        m = int(round(trim * side))
+        rows, cols = np.divmod(faces[:, 0], side)
+        keep &= (rows >= m) & (rows < side - 1 - m) & (cols >= m) & (cols < side - 1 - m)
+    cut = background_depth
+    if cut is None and background is not None:
         cut = float(np.percentile(points[opacity > 0.1, 2], background))
+    if cut is not None:
         keep &= z.max(1) <= cut
     faces = faces[keep]
 
@@ -96,18 +103,28 @@ def relief_mesh(vertices, out: Path, background: float | None, layers: int = 2) 
     colours = (np.concatenate([rgb, np.ones((len(points), 1))], 1) * 255).astype(np.uint8)
     mesh = trimesh.Trimesh(points, faces, vertex_colors=colours, process=False)
     mesh.remove_unreferenced_vertices()
+    dropped = 0
+    if main_piece:
+        # Only the pieces at least 5% the size of the largest (loose bits at the photo's edges go).
+        pieces = mesh.split(only_watertight=False)
+        largest = max(len(piece.faces) for piece in pieces)
+        kept = [piece for piece in pieces if len(piece.faces) >= 0.05 * largest]
+        dropped = sum(len(piece.faces) for piece in pieces) - sum(len(piece.faces) for piece in kept)
+        mesh = trimesh.util.concatenate(kept)
+        print(f"  kept {len(kept)} of {len(pieces)} pieces ({dropped:,} triangles in loose bits dropped)")
     mesh.export(out)
     print(f"  {out.relative_to(ROOT)}: grid {side} x {side}, {len(faces):,} of {len(keep):,} triangles kept, {len(mesh.vertices):,} vertices")
     return {"grid": side, "depth_ratio_max": 1.04, "min_opacity": 0.1, "background_percentile": background,
-            "background_depth_m": round(cut, 3) if cut is not None else None}
+            "background_depth_m": round(cut, 3) if cut is not None else None, "main_piece_only": main_piece or None,
+            "trim": trim or None}
 
 
-def cut_background(ply: Path, data, vertices, background: float, out: Path) -> Path:
+def cut_background(ply: Path, data, vertices, background: float | None, out: Path, depth: float | None = None) -> Path:
     """The splat without the Gaussians further than the background cut (for the splat-look meshes)."""
     from plyfile import PlyData, PlyElement
 
     opacity = 1 / (1 + np.exp(-np.asarray(vertices["opacity"], np.float64)))
-    cut = np.percentile(vertices["z"][opacity > 0.1], background)
+    cut = depth if depth is not None else np.percentile(vertices["z"][opacity > 0.1], background)
     kept = vertices[vertices["z"] <= cut]
     PlyData([PlyElement.describe(kept, "vertex")] + [e for e in data.elements if e.name != "vertex"], text=False).write(str(out))
     return out
@@ -133,6 +150,10 @@ def main() -> None:
     p.add_argument("--device", default="cpu", choices=["cpu", "mps", "cuda"],
                    help="cpu by default: about 2 minutes and 9 GB on a Mac; mps (Apple GPU) once took a 24 GB Mac down")
     p.add_argument("--background", type=float, help="drop what is beyond this depth percentile (e.g. 92)")
+    p.add_argument("--background-depth", type=float,
+                   help="drop what is further than this many meters from the camera (for a backdrop just behind the subject)")
+    p.add_argument("--main-piece", action="store_true", help="keep only the mesh's main piece(s), dropping loose bits")
+    p.add_argument("--trim", type=float, default=0.0, help="leave out this fraction of the photo at each edge (e.g. 0.05)")
     p.add_argument("--splatlook", action="store_true", help="also the splat-look mesh and its Quest version")
     p.add_argument("--sigma", type=float, default=1.6, help="splat-look quad half-size, in standard deviations")
     p.add_argument("--soft", action="store_true", help="splat-look quads fade out (alpha-blended)")
@@ -160,7 +181,7 @@ def main() -> None:
 
     print("2. relief mesh")
     mesh = ROOT / "mesh" / f"{a.id}_mesh.glb"
-    relief = relief_mesh(vertices, mesh, a.background)
+    relief = relief_mesh(vertices, mesh, a.background, background_depth=a.background_depth, main_piece=a.main_piece, trim=a.trim)
 
     mesh_quest = ROOT / "mesh" / f"{a.id}_mesh_quest.glb"
     run([sys.executable, ROOT / "tools/glb_grid_simplify.py", mesh, mesh_quest, "--target", a.quest_triangles // 2, "--cell", 0.002])
@@ -185,11 +206,13 @@ def main() -> None:
 
     if a.splatlook:
         print("5. splat-look meshes")
-        quads_from = cut_background(splat, data, vertices, a.background, work / "cut.ply") if a.background is not None else splat
+        cutting = a.background is not None or a.background_depth is not None
+        quads_from = cut_background(splat, data, vertices, a.background, work / "cut.ply", a.background_depth) if cutting else splat
         soft = ["--soft"] if a.soft else []
         look = ROOT / "mesh" / f"{a.id}_splatlook.glb"
         run([sys.executable, ROOT / "tools/splat2glb.py", quads_from, look, a.sigma, 0, "", *soft])
-        settings = {"sigma": a.sigma, "soft": a.soft, "background_percentile": a.background, "min_opacity": 0.2}
+        settings = {"sigma": a.sigma, "soft": a.soft, "background_percentile": a.background,
+                    "background_depth_m": a.background_depth, "min_opacity": 0.2}
         if look.stat().st_size > MAX_BYTES:
             print(f"  {look.name} is {look.stat().st_size / 1e6:.0f} MB, over GitHub's limit: left out (the Quest version stays)")
             look.unlink()

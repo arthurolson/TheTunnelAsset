@@ -4,7 +4,7 @@
   "branch": "main",
   "base_url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/",
   "updated": "2026-11-18",
-  "count": 31,
+  "count": 34,
   "kinds": [
     "image",
     "mesh",
@@ -17,6 +17,7 @@
     "art",
     "david-goodsell",
     "molecules",
+    "school-photo",
     "scripps-1924",
     "test",
     "viruses"
@@ -253,6 +254,96 @@
       }
     },
     {
+      "id": "ozzy_mesh",
+      "kind": "mesh",
+      "subject": "school-photo",
+      "title": "Ozzy at 6, 2.5D relief mesh",
+      "tags": [
+        "portrait",
+        "school-photo",
+        "child",
+        "relief"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/ozzy_mesh.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/ozzy_mesh.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/ozzy_mesh.glb",
+      "bytes": 11008932,
+      "sha256": "0fad9b658d308f20c684aa075b3581ba99936acaecb831375678c1cadffaf377",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/ozzy_mesh.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 276416,
+      "faces": 548774,
+      "color": "vertex",
+      "extent": [
+        0.428,
+        0.515,
+        0.16
+      ],
+      "source": "derived from ozzy_splat",
+      "method": {
+        "name": "SHARP splat -> grid mesh (front layer)",
+        "script": "tools/photo_to_asset.py",
+        "grid": 768,
+        "depth_ratio_max": 1.04,
+        "min_opacity": 0.1,
+        "background_depth_m": 0.64,
+        "main_piece_only": true,
+        "trim": 0.05
+      }
+    },
+    {
+      "id": "ozzy_mesh_quest",
+      "kind": "mesh",
+      "subject": "school-photo",
+      "title": "Ozzy at 6, 2.5D relief mesh for Quest",
+      "tags": [
+        "portrait",
+        "school-photo",
+        "child",
+        "relief",
+        "quest",
+        "mobile"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/ozzy_mesh_quest.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/ozzy_mesh_quest.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/ozzy_mesh_quest.glb",
+      "bytes": 3730280,
+      "sha256": "7404c2f06bba83e4eca628f37ae4269a7b5c5c6f9b5e7b5d9897184d1171303c",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/ozzy_mesh.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 68186,
+      "faces": 151658,
+      "color": "vertex",
+      "extent": [
+        0.428,
+        0.515,
+        0.16
+      ],
+      "source": "derived from ozzy_mesh",
+      "method": {
+        "name": "tools/glb_grid_simplify.py (vertices merged on a grid)",
+        "target_triangles": 300000
+      }
+    },
+    {
       "id": "scripps_1924_splatlook",
       "kind": "mesh",
       "subject": "scripps-1924",
@@ -413,6 +504,47 @@
       "source_image_size": [
         4908,
         3614
+      ]
+    },
+    {
+      "id": "ozzy_splat",
+      "kind": "splat",
+      "subject": "school-photo",
+      "title": "Ozzy at 6 (splat)",
+      "tags": [
+        "portrait",
+        "school-photo",
+        "child"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/ozzy.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/ozzy.ply",
+      "cdn_url": null,
+      "bytes": 66061086,
+      "sha256": "d6527a3cda2aaa418720c05a6a7ec49011cac1213d929b4218d9df09bb164a4e",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/ozzy.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 1179648,
+      "source": "photo (ozzy_school_photo.jpg)",
+      "method": {
+        "name": "SHARP (Apple ml-sharp)",
+        "url": "https://github.com/apple/ml-sharp",
+        "notes": "Single-image feedforward 3D Gaussian Splatting; reconstructs only what the camera saw.",
+        "device": "cpu",
+        "script": "tools/photo_to_asset.py"
+      },
+      "source_image_size": [
+        1459,
+        2000
       ]
     },
     {

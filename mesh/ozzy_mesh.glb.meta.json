@@ -1,0 +1,24 @@
+{
+  "id": "ozzy_mesh",
+  "subject": "school-photo",
+  "title": "Ozzy at 6, 2.5D relief mesh",
+  "tags": [
+    "portrait",
+    "school-photo",
+    "child",
+    "relief"
+  ],
+  "thumbnail": "thumbs/ozzy_mesh.jpg",
+  "coordinates": "gltf",
+  "source": "derived from ozzy_splat",
+  "method": {
+    "name": "SHARP splat -> grid mesh (front layer)",
+    "script": "tools/photo_to_asset.py",
+    "grid": 768,
+    "depth_ratio_max": 1.04,
+    "min_opacity": 0.1,
+    "background_depth_m": 0.64,
+    "main_piece_only": true,
+    "trim": 0.05
+  }
+}
