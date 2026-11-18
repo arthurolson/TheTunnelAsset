@@ -4,7 +4,7 @@
   "branch": "main",
   "base_url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/",
   "updated": "2026-11-17",
-  "count": 30,
+  "count": 31,
   "kinds": [
     "image",
     "mesh",
@@ -877,6 +877,51 @@
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "the export placed its protein mesh 144 times in the same spot; tools/glb_dedupe_nodes.py keeps one"
+      }
+    },
+    {
+      "id": "membrane1_quest",
+      "kind": "molecule",
+      "subject": "molecules",
+      "title": "Membrane patch with embedded proteins, simplified for Quest (137k vertices)",
+      "tags": [
+        "assembly",
+        "membrane",
+        "lipid",
+        "protein",
+        "quest",
+        "mobile"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "molecule/assemblies/membrane1_quest.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/molecule/assemblies/membrane1_quest.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/molecule/assemblies/membrane1_quest.glb",
+      "bytes": 7276520,
+      "sha256": "ee484c596d812431b4b4328a10609dc70155b466bce8f77b0139fd4a18bf1d8f",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/membrane1.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
+      },
+      "vertices": 136997,
+      "faces": 286555,
+      "color": "vertex",
+      "extent": [
+        1097.744,
+        1097.313,
+        169.599
+      ],
+      "name": "Membrane",
+      "category": "assemblies",
+      "source": "derived from membrane1",
+      "method": {
+        "name": "tools/glb_grid_simplify.py",
+        "notes": "vertices merged on a 7.2 A grid, done ahead so a headset makes its toy at once"
       }
     },
     {

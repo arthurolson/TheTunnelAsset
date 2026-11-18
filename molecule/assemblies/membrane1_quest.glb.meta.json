@@ -1,0 +1,14 @@
+{
+  "id": "membrane1_quest",
+  "name": "Membrane",
+  "category": "assemblies",
+  "subject": "molecules",
+  "title": "Membrane patch with embedded proteins, simplified for Quest (137k vertices)",
+  "tags": ["assembly", "membrane", "lipid", "protein", "quest", "mobile"],
+  "thumbnail": "thumbs/membrane1.jpg",
+  "source": "derived from membrane1",
+  "method": {
+    "name": "tools/glb_grid_simplify.py",
+    "notes": "vertices merged on a 7.2 A grid, done ahead so a headset makes its toy at once"
+  }
+}
