@@ -1,5 +1,6 @@
 {
   "id": "crambin_1crn_spacefill",
+  "name": "Crambin (spacefill)",
   "subject": "molecules",
   "title": "Crambin (PDB 1CRN), spacefill",
   "tags": [
@@ -13,5 +14,6 @@
     "name": "tools/molecule_to_glb.py",
     "notes": "one sphere per atom, CPK colours, shading baked into vertex colours"
   },
-  "pdb_id": "1CRN"
+  "pdb_id": "1CRN",
+  "category": "proteins"
 }

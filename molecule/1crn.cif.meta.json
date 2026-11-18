@@ -1,5 +1,6 @@
 {
   "id": "crambin_1crn",
+  "name": "Crambin",
   "subject": "molecules",
   "title": "Crambin (PDB 1CRN), atomic model",
   "tags": [
@@ -15,5 +16,6 @@
     "name": "CC0 1.0",
     "url": "https://creativecommons.org/publicdomain/zero/1.0/",
     "attribution": "PDB 1CRN (Teeter, M.M.), RCSB Protein Data Bank, CC0"
-  }
+  },
+  "category": "proteins"
 }

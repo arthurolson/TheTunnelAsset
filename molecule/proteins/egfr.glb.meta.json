@@ -1,5 +1,6 @@
 {
   "id": "egfr",
+  "name": "EGFR",
   "subject": "molecules",
   "title": "EGFR, epidermal growth factor receptor",
   "tags": [
@@ -7,10 +8,10 @@
     "receptor",
     "egfr"
   ],
-  "category": "proteins",
   "method": {
     "name": "Mol* (molstar.org) glTF export",
     "notes": "molecular surface, coloured by chain"
   },
-  "thumbnail": "thumbs/egfr.jpg"
+  "thumbnail": "thumbs/egfr.jpg",
+  "category": "proteins"
 }

@@ -1,5 +1,6 @@
 {
   "id": "poliovirus_capsid_2plv",
+  "name": "2PLV",
   "subject": "viruses",
   "title": "Poliovirus capsid (PDB 2PLV), coarse surface",
   "tags": [
@@ -9,19 +10,12 @@
     "polio"
   ],
   "pdb_id": "2PLV",
-  "category": "viral capsids",
-  "coordinates": {
-    "convention": "gltf",
-    "x": "right",
-    "y": "up",
-    "z": "toward viewer",
-    "units": "scaled to 0.4 units across (the capsid is about 30 nm across)",
-    "meters_per_unit": 7.5e-08
-  },
+  "coordinates": "angstrom",
   "method": {
-    "name": "Gaussian surface (spacing 2 A, sigma 3 A, iso 0.5) by gauss_surface.py, then tools/obj_mtl_to_glb.py",
+    "name": "Gaussian surface (spacing 2 A, sigma 3 A, iso 0.5) by gauss_surface.py, then tools/obj_mtl_to_glb.py --scale 835 (back to Angstroms: the OBJ's 0.2-unit radius is 167 A)",
     "notes": "coloured by protein: VP1 blue, VP2 green, VP3 red, VP4 yellow"
   },
   "source": "https://www.rcsb.org/structure/2PLV",
-  "thumbnail": "thumbs/2plv_poliovirus.jpg"
+  "thumbnail": "thumbs/2plv_poliovirus.jpg",
+  "category": "viral capsids"
 }

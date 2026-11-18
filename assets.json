@@ -51,6 +51,11 @@
       "vertices": 573762,
       "faces": 1113554,
       "color": "vertex",
+      "extent": [
+        4.992,
+        4.987,
+        4.413
+      ],
       "source": "derived from art_photo_splat",
       "method": {
         "name": "SHARP splat -> grid mesh (front layer)",
@@ -87,6 +92,11 @@
       "vertices": 29171,
       "faces": 49999,
       "color": "texture",
+      "extent": [
+        0.442,
+        1.346,
+        0.369
+      ],
       "source": "video (IMG_9390, 17 s orbit)",
       "method": {
         "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
@@ -156,6 +166,11 @@
       "vertices": 134362,
       "faces": 252593,
       "color": "vertex",
+      "extent": [
+        2.03,
+        1.481,
+        1.976
+      ],
       "source": "derived from goodsell_portrait_splat",
       "method": {
         "name": "SHARP splat -> mesh"
@@ -189,6 +204,11 @@
       "vertices": 134362,
       "faces": 252593,
       "color": "vertex",
+      "extent": [
+        2.03,
+        1.481,
+        1.976
+      ],
       "source": "derived from goodsell_portrait_splat",
       "method": {
         "name": "SHARP splat -> mesh"
@@ -222,6 +242,11 @@
       "vertices": 1129896,
       "faces": 564948,
       "color": "vertex",
+      "extent": [
+        1.948,
+        1.527,
+        2.219
+      ],
       "source": "derived from goodsell_portrait_splat",
       "method": {
         "name": "SHARP splat -> billboard mesh"
@@ -258,6 +283,11 @@
       "vertices": 2271544,
       "faces": 1135772,
       "color": "vertex",
+      "extent": [
+        69.917,
+        32.141,
+        160.429
+      ],
       "source": "derived from the Scripps 1924 splat",
       "method": {
         "name": "splat -> billboard mesh (splat2glb.py)"
@@ -296,6 +326,11 @@
       "vertices": 585208,
       "faces": 292604,
       "color": "vertex",
+      "extent": [
+        69.871,
+        32.05,
+        160.326
+      ],
       "source": "derived from the Scripps 1924 splat",
       "method": {
         "name": "splat -> billboard mesh (splat2glb.py), voxel-decimated"
@@ -653,6 +688,12 @@
       },
       "atoms": 327,
       "chains": 1,
+      "extent": [
+        27.381,
+        21.453,
+        27.002
+      ],
+      "name": "Crambin",
       "surface": "crambin_1crn_spacefill",
       "source": "https://www.rcsb.org/structure/1CRN",
       "pdb_id": "1CRN",
@@ -660,7 +701,8 @@
         "name": "CC0 1.0",
         "url": "https://creativecommons.org/publicdomain/zero/1.0/",
         "attribution": "PDB 1CRN (Teeter, M.M.), RCSB Protein Data Bank, CC0"
-      }
+      },
+      "category": "proteins"
     },
     {
       "id": "crambin_1crn_spacefill",
@@ -691,12 +733,19 @@
       "vertices": 13734,
       "faces": 26160,
       "color": "vertex",
+      "extent": [
+        30.421,
+        24.853,
+        30.222
+      ],
+      "name": "Crambin (spacefill)",
       "source": "derived from crambin_1crn",
       "method": {
         "name": "tools/molecule_to_glb.py",
         "notes": "one sphere per atom, CPK colours, shading baked into vertex colours"
       },
-      "pdb_id": "1CRN"
+      "pdb_id": "1CRN",
+      "category": "proteins"
     },
     {
       "id": "ecoli_50s_ribosome",
@@ -728,13 +777,19 @@
       "vertices": 9544,
       "faces": 19012,
       "color": "vertex",
+      "extent": [
+        192.832,
+        252.001,
+        188.23
+      ],
+      "name": "E. coli 50S ribosome",
       "pdb_id": "10QM",
-      "category": "assemblies",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
       },
-      "source": "https://www.rcsb.org/structure/10QM"
+      "source": "https://www.rcsb.org/structure/10QM",
+      "category": "assemblies"
     },
     {
       "id": "ecoli_50s_ribosome_hires",
@@ -767,13 +822,19 @@
       "vertices": 563268,
       "faces": 1126760,
       "color": "vertex",
+      "extent": [
+        196.655,
+        255.223,
+        192.761
+      ],
+      "name": "Hi-res Ribosome",
       "pdb_id": "10QM",
-      "category": "assemblies",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "Gaussian surface, every chain in its own colour"
       },
-      "source": "https://www.rcsb.org/structure/10QM"
+      "source": "https://www.rcsb.org/structure/10QM",
+      "category": "assemblies"
     },
     {
       "id": "egfr_ligand_9s3x",
@@ -804,13 +865,19 @@
       "vertices": 25038,
       "faces": 49920,
       "color": "vertex",
+      "extent": [
+        8.981,
+        16.364,
+        21.175
+      ],
+      "name": "EGFR ligand",
       "pdb_id": "9S3X",
-      "category": "ligands",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
       },
-      "source": "https://www.rcsb.org/structure/9S3X"
+      "source": "https://www.rcsb.org/structure/9S3X",
+      "category": "ligands"
     },
     {
       "id": "igg_1igt",
@@ -841,13 +908,19 @@
       "vertices": 9506,
       "faces": 18996,
       "color": "vertex",
+      "extent": [
+        105.818,
+        146.834,
+        129.768
+      ],
+      "name": "IGG",
       "pdb_id": "1IGT",
-      "category": "proteins",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
       },
-      "source": "https://www.rcsb.org/structure/1IGT"
+      "source": "https://www.rcsb.org/structure/1IGT",
+      "category": "proteins"
     },
     {
       "id": "egfr",
@@ -878,11 +951,17 @@
       "vertices": 185952,
       "faces": 61984,
       "color": "vertex",
-      "category": "proteins",
+      "extent": [
+        69.78,
+        55.017,
+        64.818
+      ],
+      "name": "EGFR",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
-      }
+      },
+      "category": "proteins"
     },
     {
       "id": "poliovirus_capsid_2plv",
@@ -900,27 +979,33 @@
       "path": "virus/capsids/2plv_poliovirus.glb",
       "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/virus/capsids/2plv_poliovirus.glb",
       "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/virus/capsids/2plv_poliovirus.glb",
-      "bytes": 1669616,
-      "sha256": "182fceb4c1ae67b592432b9cbe0486bee3ef06699bfcafd7ee74bb264831aee0",
+      "bytes": 1669588,
+      "sha256": "9aca5e103f550355c04676b14b12088d41f7964c60f994b1309422d82d088133",
       "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/2plv_poliovirus.jpg",
       "coordinates": {
         "convention": "gltf",
         "x": "right",
         "y": "up",
         "z": "toward viewer",
-        "units": "scaled to 0.4 units across (the capsid is about 30 nm across)",
-        "meters_per_unit": 7.5e-08
+        "units": "angstroms",
+        "meters_per_unit": 1e-10
       },
       "vertices": 39429,
       "faces": 60000,
       "color": "material",
+      "extent": [
+        326.26,
+        327.971,
+        326.193
+      ],
+      "name": "2PLV",
       "pdb_id": "2PLV",
-      "category": "viral capsids",
       "method": {
-        "name": "Gaussian surface (spacing 2 A, sigma 3 A, iso 0.5) by gauss_surface.py, then tools/obj_mtl_to_glb.py",
+        "name": "Gaussian surface (spacing 2 A, sigma 3 A, iso 0.5) by gauss_surface.py, then tools/obj_mtl_to_glb.py --scale 835 (back to Angstroms: the OBJ's 0.2-unit radius is 167 A)",
         "notes": "coloured by protein: VP1 blue, VP2 green, VP3 red, VP4 yellow"
       },
-      "source": "https://www.rcsb.org/structure/2PLV"
+      "source": "https://www.rcsb.org/structure/2PLV",
+      "category": "viral capsids"
     },
     {
       "id": "tbsv_capsid_2tbv",
@@ -952,13 +1037,19 @@
       "vertices": 55680,
       "faces": 110640,
       "color": "vertex",
+      "extent": [
+        362.043,
+        362.043,
+        362.043
+      ],
+      "name": "TBSV",
       "pdb_id": "2TBV",
-      "category": "viral capsids",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
       },
-      "source": "https://www.rcsb.org/structure/2TBV"
+      "source": "https://www.rcsb.org/structure/2TBV",
+      "category": "viral capsids"
     },
     {
       "id": "zika_capsid_5ire",
@@ -990,13 +1081,19 @@
       "vertices": 62760,
       "faces": 124080,
       "color": "vertex",
+      "extent": [
+        544.606,
+        549.759,
+        531.221
+      ],
+      "name": "Zika",
       "pdb_id": "5IRE",
-      "category": "viral capsids",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "molecular surface, coloured by chain"
       },
-      "source": "https://www.rcsb.org/structure/5IRE"
+      "source": "https://www.rcsb.org/structure/5IRE",
+      "category": "viral capsids"
     },
     {
       "id": "sars_cov_2_virion",
@@ -1029,12 +1126,18 @@
       "vertices": 6326760,
       "faces": 12249600,
       "color": "vertex",
-      "category": "viral capsids",
+      "extent": [
+        1690.55,
+        1667.21,
+        1783.75
+      ],
+      "name": "SARS",
       "method": {
         "name": "Mol* (molstar.org) glTF export",
         "notes": "whole virion: membrane, spike, M and E proteins"
       },
-      "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest."
+      "notes": "324 MB, hosted as a GitHub Release asset (too large for git). Far too heavy to show whole on a Quest.",
+      "category": "viral capsids"
     },
     {
       "id": "crambin_icosahedral_demo",

@@ -1,5 +1,6 @@
 {
   "id": "sars_cov_2_virion",
+  "name": "SARS",
   "subject": "viruses",
   "title": "SARS-CoV-2 virion (whole virus, 12M triangles)",
   "tags": [
@@ -9,7 +10,6 @@
     "sars-cov-2",
     "heavy"
   ],
-  "category": "viral capsids",
   "url": "https://github.com/arthurolson/TheTunnelAsset/releases/download/molecules-1/sars_cov_2_virion.glb",
   "thumbnail": "thumbs/sars_cov_2_virion.jpg",
   "method": {
@@ -21,5 +21,11 @@
   "sha256": "92053926c22a6e2341af9ad39092788dff5ceb7bc1dd945145f5223689a51a03",
   "vertices": 6326760,
   "faces": 12249600,
-  "color": "vertex"
+  "color": "vertex",
+  "category": "viral capsids",
+  "extent": [
+    1690.55,
+    1667.21,
+    1783.75
+  ]
 }

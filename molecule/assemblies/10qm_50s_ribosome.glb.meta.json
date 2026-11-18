@@ -1,5 +1,6 @@
 {
   "id": "ecoli_50s_ribosome",
+  "name": "E. coli 50S ribosome",
   "subject": "molecules",
   "title": "E. coli 50S ribosome (PDB 10QM), coarse surface",
   "tags": [
@@ -9,11 +10,11 @@
     "protein"
   ],
   "pdb_id": "10QM",
-  "category": "assemblies",
   "method": {
     "name": "Mol* (molstar.org) glTF export",
     "notes": "molecular surface, coloured by chain"
   },
   "source": "https://www.rcsb.org/structure/10QM",
-  "thumbnail": "thumbs/10qm_50s_ribosome.jpg"
+  "thumbnail": "thumbs/10qm_50s_ribosome.jpg",
+  "category": "assemblies"
 }

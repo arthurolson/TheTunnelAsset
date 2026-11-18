@@ -1,5 +1,6 @@
 {
   "id": "ecoli_50s_ribosome_hires",
+  "name": "Hi-res Ribosome",
   "subject": "molecules",
   "title": "E. coli 50S ribosome (PDB 10QM), high-resolution surface",
   "tags": [
@@ -10,11 +11,11 @@
     "hi-res"
   ],
   "pdb_id": "10QM",
-  "category": "assemblies",
   "method": {
     "name": "Mol* (molstar.org) glTF export",
     "notes": "Gaussian surface, every chain in its own colour"
   },
   "source": "https://www.rcsb.org/structure/10QM",
-  "thumbnail": "thumbs/10qm_50s_ribosome_hires.jpg"
+  "thumbnail": "thumbs/10qm_50s_ribosome_hires.jpg",
+  "category": "assemblies"
 }

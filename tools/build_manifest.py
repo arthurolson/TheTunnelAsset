@@ -138,7 +138,66 @@ def glb_stats(path: Path) -> dict:
     for material in gltf.get("materials", []):
         textured |= "baseColorTexture" in material.get("pbrMetallicRoughness", {})
     color = "vertex" if vertex_colors else "texture" if textured else "material"
-    return {"vertices": vertices, "faces": faces, "color": color}
+    out = {"vertices": vertices, "faces": faces, "color": color}
+    extent = glb_extent(gltf)
+    if extent:
+        out["extent"] = extent
+    return out
+
+
+def node_matrices(gltf: dict) -> list[tuple[int, list[list[float]]]]:
+    """(mesh, world matrix) for every node that places a mesh, through the scene's hierarchy (4x4, row-major)."""
+    def mul(a, b):
+        return [[sum(a[i][k] * b[k][j] for k in range(4)) for j in range(4)] for i in range(4)]
+
+    def local(node):
+        if "matrix" in node:
+            m = node["matrix"]
+            return [[m[c * 4 + r] for c in range(4)] for r in range(4)]
+        tx, ty, tz = node.get("translation", [0, 0, 0])
+        x, y, z, w = node.get("rotation", [0, 0, 0, 1])
+        sx, sy, sz = node.get("scale", [1, 1, 1])
+        r = [[1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],
+             [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
+             [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)]]
+        s = [sx, sy, sz]
+        return [[r[i][0] * s[0], r[i][1] * s[1], r[i][2] * s[2], [tx, ty, tz][i]] for i in range(3)] + [[0, 0, 0, 1]]
+
+    nodes = gltf.get("nodes", [])
+    out = []
+
+    def walk(index, parent):
+        node = nodes[index]
+        m = mul(parent, local(node))
+        if "mesh" in node:
+            out.append((node["mesh"], m))
+        for child in node.get("children", []):
+            walk(child, m)
+
+    identity = [[1.0 if i == j else 0.0 for j in range(4)] for i in range(4)]
+    scenes = gltf.get("scenes") or [{"nodes": list(range(len(nodes)))}]
+    for root in scenes[gltf.get("scene", 0)].get("nodes", []):
+        walk(root, identity)
+    return out
+
+
+def glb_extent(gltf: dict) -> list[float] | None:
+    """The model's size along x, y and z in its own units: every placed mesh's corners, through its node's transform."""
+    accessors = gltf.get("accessors", [])
+    lo, hi = [float("inf")] * 3, [float("-inf")] * 3
+    for mesh_index, m in node_matrices(gltf):
+        for primitive in gltf["meshes"][mesh_index].get("primitives", []):
+            a = accessors[primitive.get("attributes", {}).get("POSITION", -1)] if "POSITION" in primitive.get("attributes", {}) else None
+            if not a or "min" not in a or "max" not in a:
+                continue
+            for corner in range(8):
+                p = [a["max"][k] if corner >> k & 1 else a["min"][k] for k in range(3)]
+                q = [sum(m[i][k] * p[k] for k in range(3)) + m[i][3] for i in range(3)]
+                lo = [min(lo[i], q[i]) for i in range(3)]
+                hi = [max(hi[i], q[i]) for i in range(3)]
+    if lo[0] == float("inf"):
+        return None
+    return [round(hi[i] - lo[i], 3) for i in range(3)]
 
 
 def ply_stats(path: Path) -> dict:
@@ -228,22 +287,32 @@ def video_stats(path: Path) -> dict:
     return out
 
 
+def extent_of(points: list[tuple[float, float, float]]) -> dict:
+    if not points:
+        return {}
+    return {"extent": [round(max(p[i] for p in points) - min(p[i] for p in points), 3) for i in range(3)]}
+
+
 def pdb_stats(path: Path) -> dict:
-    atoms, chains = 0, set()
+    atoms, chains, points = 0, set(), []
     with path.open(errors="replace") as f:
         for line in f:
             if line.startswith(("ATOM  ", "HETATM")):
                 atoms += 1
                 chains.add(line[21:22])
+                try:
+                    points.append((float(line[30:38]), float(line[38:46]), float(line[46:54])))
+                except ValueError:
+                    pass
             elif line.startswith("ENDMDL"):
                 break  # the first model only
-    return {"atoms": atoms, "chains": len(chains)}
+    return {"atoms": atoms, "chains": len(chains), **extent_of(points)}
 
 
 def cif_stats(path: Path) -> dict:
     """Atoms and chains from the _atom_site loop of an mmCIF file (the first model only)."""
     columns: list[str] = []
-    atoms, chains = 0, set()
+    atoms, chains, points = 0, set(), []
     in_loop = reading = False
     with path.open(errors="replace") as f:
         for line in f:
@@ -263,11 +332,15 @@ def cif_stats(path: Path) -> dict:
                 if "pdbx_PDB_model_num" in columns and values[columns.index("pdbx_PDB_model_num")] != "1":
                     continue
                 atoms += 1
+                try:
+                    points.append(tuple(float(values[columns.index(k)]) for k in ("Cartn_x", "Cartn_y", "Cartn_z")))
+                except (ValueError, IndexError):
+                    pass
                 for key in ("auth_asym_id", "label_asym_id"):
                     if key in columns:
                         chains.add(values[columns.index(key)])
                         break
-    return {"atoms": atoms, "chains": len(chains)}
+    return {"atoms": atoms, "chains": len(chains), **extent_of(points)}
 
 
 def instance_stats(path: Path) -> dict:
