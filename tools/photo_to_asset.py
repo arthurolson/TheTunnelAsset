@@ -10,7 +10,8 @@ Writes, with a thumbnail and a sidecar for each, then regenerates assets.json:
     mesh/<id>_splatlook.glb         with --splatlook: one small quad per Gaussian (left out if over 95 MB)
     mesh/<id>_splatlook_quest.glb   with --splatlook: the same, voxel-decimated to about --quest-triangles
 Run it with the Python of the "sharp" conda environment (see the README): it needs SHARP, numpy, plyfile, trimesh
-and Pillow. SHARP runs on --device mps (Apple silicon), cuda or cpu; its checkpoint downloads on the first run.
+and Pillow. SHARP runs on --device cpu (the default: about 2 minutes, 9 GB of memory), mps (Apple GPU) or cuda; its
+checkpoint (2.8 GB) downloads on the first run.
 
 SHARP reconstructs only what the camera saw: the back of everything is empty, and the mesh is a relief, not a closed
 object. --background P drops what lies further away than the P-th percentile of depth (a sky or a far wall).
@@ -129,7 +130,8 @@ def main() -> None:
     p.add_argument("--subject", required=True)
     p.add_argument("--title", required=True)
     p.add_argument("--tags", default="")
-    p.add_argument("--device", default="mps", choices=["mps", "cuda", "cpu"])
+    p.add_argument("--device", default="cpu", choices=["cpu", "mps", "cuda"],
+                   help="cpu by default: about 2 minutes and 9 GB on a Mac; mps (Apple GPU) once took a 24 GB Mac down")
     p.add_argument("--background", type=float, help="drop what is beyond this depth percentile (e.g. 92)")
     p.add_argument("--splatlook", action="store_true", help="also the splat-look mesh and its Quest version")
     p.add_argument("--sigma", type=float, default=1.6, help="splat-look quad half-size, in standard deviations")

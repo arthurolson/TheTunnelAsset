@@ -240,6 +240,7 @@ pip install plyfile trimesh scipy pillow opencv-python-headless
 ```bash
 ~/miniforge3/envs/sharp/bin/python tools/photo_to_asset.py photos/lab.jpg \
     --id art_lab --subject art --title "Art in the lab" --tags person,lab --splatlook --background 92
+# about 2 minutes on the CPU; the first run also downloads SHARP's 2.8 GB checkpoint
 ```
 
 It writes:
@@ -261,9 +262,9 @@ It writes:
     and the splat-look.
   - `--soft` makes the splat-look quads fade out from their centre and by their opacity (alpha-blended). The Tunnel
     draws them opaque.
-  - `--device cuda` or `cpu` where there is no Apple silicon. On a 24 GB Mac, SHARP's first prediction on `mps`,
-    with Unity open, seems to have taken the whole Mac down. Close Unity first, or use `--device cpu`, which is slower
-    but light.
+  - `--device`: SHARP runs on the CPU by default, which takes about 2 minutes and 9 GB of memory on a Mac. `mps`
+    (the Apple GPU) is faster, but its first run on a 24 GB Mac, with Unity open, seems to have taken the whole Mac
+    down. `cuda` is for an NVIDIA GPU.
   - `--splat file.ply` starts from a splat you already have.
 - **Its limits:**
   - SHARP reconstructs only what the camera saw. The back of everything is empty, and the mesh is a relief, not a
