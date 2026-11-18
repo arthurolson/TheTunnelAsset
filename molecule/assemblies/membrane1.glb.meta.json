@@ -1,0 +1,14 @@
+{
+  "id": "membrane1",
+  "name": "Membrane",
+  "category": "assemblies",
+  "subject": "molecules",
+  "title": "Membrane patch with embedded proteins, about 110 x 110 nm",
+  "tags": ["assembly", "membrane", "lipid", "protein"],
+  "thumbnail": "thumbs/membrane1.jpg",
+  "source": "membrane1.glb (Tunnel Project/molecules)",
+  "method": {
+    "name": "Mol* (molstar.org) glTF export",
+    "notes": "the export placed its protein mesh 144 times in the same spot; tools/glb_dedupe_nodes.py keeps one"
+  }
+}
