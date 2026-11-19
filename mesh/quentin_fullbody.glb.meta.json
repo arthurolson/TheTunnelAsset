@@ -1,0 +1,29 @@
+{
+  "id": "quentin_fullbody",
+  "subject": "quentin",
+  "title": "Quentin, seated, full 3D model",
+  "tags": [
+    "person",
+    "seated",
+    "full-body",
+    "360",
+    "turntable"
+  ],
+  "thumbnail": "thumbs/quentin_fullbody.jpg",
+  "coordinates": "gltf-meters",
+  "source": "videos (quentin1.MOV, quentin2.MOV), subject turning on a chair",
+  "method": {
+    "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+    "detail": "medium",
+    "frames": 266,
+    "videos": 2,
+    "frames_per_second": 10,
+    "blurriest_dropped": 0.2,
+    "sample_ordering": "sequential",
+    "feature_sensitivity": "high",
+    "object_masking": true,
+    "turntable": "subject cut out onto grey with Apple Vision (tools/mask_subject.swift); grey triangles below 0.5 m removed (tools/glb_drop_colour.py)",
+    "height_m": 1.3,
+    "script": "tools/video_to_asset.sh"
+  }
+}

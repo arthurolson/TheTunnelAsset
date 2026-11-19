@@ -3,8 +3,8 @@
   "repo": "https://github.com/arthurolson/TheTunnelAsset",
   "branch": "main",
   "base_url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/",
-  "updated": "2026-11-18",
-  "count": 34,
+  "updated": "2026-11-19",
+  "count": 36,
   "kinds": [
     "image",
     "mesh",
@@ -17,6 +17,7 @@
     "art",
     "david-goodsell",
     "molecules",
+    "quentin",
     "school-photo",
     "scripps-1924",
     "test",
@@ -344,6 +345,58 @@
       }
     },
     {
+      "id": "quentin_fullbody",
+      "kind": "mesh",
+      "subject": "quentin",
+      "title": "Quentin, seated, full 3D model",
+      "tags": [
+        "person",
+        "seated",
+        "full-body",
+        "360",
+        "turntable"
+      ],
+      "format": "gltf-binary",
+      "mime": "model/gltf-binary",
+      "path": "mesh/quentin_fullbody.glb",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/mesh/quentin_fullbody.glb",
+      "cdn_url": "https://cdn.jsdelivr.net/gh/arthurolson/TheTunnelAsset@main/mesh/quentin_fullbody.glb",
+      "bytes": 4920884,
+      "sha256": "72c9b3ba8f179b7918071c41049de707d08c75c090970afa52538ef065070090",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/quentin_fullbody.jpg",
+      "coordinates": {
+        "convention": "gltf",
+        "x": "right",
+        "y": "up",
+        "z": "toward viewer",
+        "units": "meters",
+        "meters_per_unit": 1.0
+      },
+      "vertices": 19594,
+      "faces": 33933,
+      "color": "texture",
+      "extent": [
+        0.607,
+        1.167,
+        0.914
+      ],
+      "source": "videos (quentin1.MOV, quentin2.MOV), subject turning on a chair",
+      "method": {
+        "name": "Apple Object Capture (RealityKit PhotogrammetrySession)",
+        "detail": "medium",
+        "frames": 266,
+        "videos": 2,
+        "frames_per_second": 10,
+        "blurriest_dropped": 0.2,
+        "sample_ordering": "sequential",
+        "feature_sensitivity": "high",
+        "object_masking": true,
+        "turntable": "subject cut out onto grey with Apple Vision (tools/mask_subject.swift); grey triangles below 0.5 m removed (tools/glb_drop_colour.py)",
+        "height_m": 1.3,
+        "script": "tools/video_to_asset.sh"
+      }
+    },
+    {
       "id": "scripps_1924_splatlook",
       "kind": "mesh",
       "subject": "scripps-1924",
@@ -546,6 +599,44 @@
         1459,
         2000
       ]
+    },
+    {
+      "id": "quentin_fullbody_splat",
+      "kind": "splat",
+      "subject": "quentin",
+      "title": "Quentin, seated, full 3D splat",
+      "tags": [
+        "person",
+        "seated",
+        "full-body",
+        "360",
+        "turntable"
+      ],
+      "format": "gaussian-splat-ply",
+      "mime": "application/octet-stream",
+      "path": "splat/quentin_fullbody.ply",
+      "url": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/splat/quentin_fullbody.ply",
+      "cdn_url": null,
+      "bytes": 40800416,
+      "sha256": "1fc957cd8f2f01a3c72645e65b8de753389892bb99210037ce73184f66d56498",
+      "thumbnail": "https://raw.githubusercontent.com/arthurolson/TheTunnelAsset/main/thumbs/quentin_fullbody.jpg",
+      "coordinates": {
+        "convention": "opencv",
+        "x": "right",
+        "y": "down",
+        "z": "forward",
+        "units": "meters (approx.)",
+        "meters_per_unit": 1.0,
+        "to_y_up": "rotate 180 deg about X"
+      },
+      "gaussians": 600000,
+      "source": "derived from quentin_fullbody",
+      "method": {
+        "name": "Gaussians sampled over the textured mesh surface",
+        "count": 600000,
+        "thickness": 0.15,
+        "script": "tools/mesh_to_splat.py"
+      }
     },
     {
       "id": "scripps_1924_no_sky_splat",

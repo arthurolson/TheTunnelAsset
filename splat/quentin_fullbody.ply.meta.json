@@ -1,0 +1,21 @@
+{
+  "id": "quentin_fullbody_splat",
+  "subject": "quentin",
+  "title": "Quentin, seated, full 3D splat",
+  "tags": [
+    "person",
+    "seated",
+    "full-body",
+    "360",
+    "turntable"
+  ],
+  "thumbnail": "thumbs/quentin_fullbody.jpg",
+  "coordinates": "opencv",
+  "source": "derived from quentin_fullbody",
+  "method": {
+    "name": "Gaussians sampled over the textured mesh surface",
+    "count": 600000,
+    "thickness": 0.15,
+    "script": "tools/mesh_to_splat.py"
+  }
+}
