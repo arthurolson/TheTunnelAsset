@@ -277,16 +277,24 @@ It writes:
     closed object.
   - Look at the results from roughly the front.
 
-### B. Orbit video -> full 3D model: `tools/video_to_asset.sh`
-
-**Not yet tested end to end.** It runs the step-by-step tools below, which made `art_video_IMG_9390_fullbody`.
+### B. Orbit or turntable video -> full 3D model and splat: `tools/video_to_asset.sh`
 
 ```bash
 tools/video_to_asset.sh orbit.mov --id art_standing --subject art --title "Art, standing" --height 1.80
 ```
 
-It writes `mesh/<id>_fullbody.glb` and `.usdz` (real size, feet at y = 0) and a four-view thumbnail. It needs a Mac
-with Apple silicon (Apple Object Capture) and takes a few minutes for about 130 frames.
+It writes `mesh/<id>_fullbody.glb` and `.usdz` (real size, feet at y = 0), `splat/<id>_fullbody.ply` and a four-view
+thumbnail. It needs a Mac with Apple silicon (Apple Object Capture) and takes about 12 minutes for 270 frames.
+- **Several videos** of the same subject go in together (`a.mov b.mov`): filmed from different heights, they fill in
+  the top of the head and under the arms.
+- **Turntable** (the subject turns, the camera and room stay still, as on a swivel chair): add `--turntable`. Each
+  frame is cut out onto grey with Apple Vision first, so Object Capture follows the subject and not the room. It can
+  still fill the space under a chair seat with that grey: `--grey-below 0.5` removes grey triangles lower than 0.5 m
+  (the GLB is cleaned, so no USDZ is written). A seated person was made with
+  `--turntable --grey-below 0.5 --height 1.30`.
+- **The splat** is sampled over the textured mesh (`tools/mesh_to_splat.py`, 600,000 flat Gaussians lying in the
+  surface; `--splat-count` changes that). It's all round, unlike SHARP's, but only as detailed as the mesh: a trained
+  3D Gaussian Splatting model (needs an NVIDIA GPU; Postshot, nerfstudio, gsplat) gives finer hair and edges.
 - **Settings:** `--detail full` for a hero asset (`reduced` if the file comes out over 95 MB).
 - **Frames:** `--fps` and `--drop` choose them (10 per second, blurriest 20% left out).
 - **On Windows or Linux:** run the frames through RealityScan, Meshroom or COLMAP + OpenMVS, then
