@@ -1,0 +1,13 @@
+{
+  "id": "cellpack_short_043",
+  "subject": "cellpack",
+  "title": "cellPACK cell, 29 s",
+  "tags": [
+    "cellpack",
+    "mesoscale",
+    "cell"
+  ],
+  "thumbnail": "thumbs/cellpack_short_043.jpg",
+  "source": "Tunnel Project/movies/cellpack_short_vid_043_res4k_aspectratio43.mp4",
+  "notes": "re-encoded for Quest streaming (H.264 High, CRF 20 capped at 18 Mbit/s, faststart; 2880x2160, 4:3); no audio"
+}

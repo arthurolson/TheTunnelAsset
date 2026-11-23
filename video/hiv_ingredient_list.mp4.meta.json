@@ -1,0 +1,14 @@
+{
+  "id": "hiv_ingredient_list",
+  "subject": "cellpack",
+  "title": "HIV ingredient list, 8 s",
+  "tags": [
+    "cellpack",
+    "mesoscale",
+    "hiv",
+    "virus"
+  ],
+  "thumbnail": "thumbs/hiv_ingredient_list.jpg",
+  "source": "Tunnel Project/movies/HIV-ingredient-list.mp4",
+  "notes": "re-encoded for Quest streaming (H.264 High, CRF 20, faststart); no audio"
+}
